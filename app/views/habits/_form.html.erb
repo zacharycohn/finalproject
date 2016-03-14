@@ -1,0 +1,13 @@
+<% if flash[:error] %>
+	<div>
+		<%= flash[:error] %>
+	</div>
+<% end %>
+
+<%= form_for @habit, method: "POST" do |h| %>
+	<div>
+		<%= h.label :name %>
+		<%= h.text_field :name %>
+	</div>
+	<%= h.submit %>
+<% end %>

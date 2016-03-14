@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Habitron</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<p><%= link_to "Daily Display", habits_path %> | 
+		<%= link_to "Weekly View", habits_path(display: "week") %> | 
+		<%= link_to "Monthly View", habits_path(display: "month") %> | 
+		<%= link_to "Habit Stats", habits_path(display: "stats") %></p>
+
+<%= yield %>
+
+</body>
+</html>
