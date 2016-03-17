@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20160312193454) do
 
   create_table "checkins", force: :cascade do |t|
     t.integer  "habit_id"
-    t.string   "status"
+    t.string   "status" #, :default => "red"
     t.string   "date"
     t.string   "description"
     t.datetime "created_at",  null: false

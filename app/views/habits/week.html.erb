@@ -21,13 +21,13 @@
 				<td><%= h.name %></td>
 				<% checkins_this_week = h.checkins.last(7) %>
 				<% checkins_this_week.reverse_each do |c| %>
-					<td>
+					<!-- <td>-->
 						<% if c.status == "green" %>
-							Green
+							<td bgcolor="00cc00">Green
 						<% elsif c.status == "yellow" %>
-							Yellow
+							<td bgcolor="ffff00">Yellow
 						<% elsif c.status == "red" %>
-							Red
+							<td bgcolor="ff0000">Red
 						<% else %>
 							problem
 						<% end %>

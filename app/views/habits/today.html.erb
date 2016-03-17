@@ -2,7 +2,7 @@
 
 <h1>Today's Date is: <%= "#{time.strftime("%B %d")}" %></h1>
 
-<p>Your habits for the day:</p>
+<p>Your habits for the day: </p>
 <table>
 	<thead>
 		<tr>
@@ -17,14 +17,14 @@
 			<tr>
 				<!-- if active -->
 				<td><%= h.name %></td>
-				<td>
+				<td bgcolor="00cc00">
 					<%= link_to "Green", habit_checkins_path(status: "green", habit_id: h.id), method: 'POST' %> 
-					<%= h.checkins.green.last_week.count %>
+					<% # h.checkins.green.today.count %>
 				</td>
-				<td>
+				<td bgcolor="ffff00">
 					<%= link_to "Yellow", habit_checkins_path(status: "yellow", habit_id: h.id), method: 'POST' %> 
 				</td>
-				<td>
+				<td bgcolor="ff0000">
 					<%= link_to "Red", habit_checkins_path(status: "red", habit_id: h.id), method: 'POST' %> 
 				</td>
 			</tr>

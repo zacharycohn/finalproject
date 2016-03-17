@@ -1,4 +1,15 @@
 TODOs:
--I added in my model habit_id. Should that be a reference instead?
--Given a certain checkin, how do I tell what habit it belongs to?
--is build_[model] a rails convention? and if so, when do you need it vs when do you not? Is it when the category might already exist?
+-Display Green/Yellow/Red images on Weekly view
+
+-Fitbit integration for steps and sleep
+
+-Install devise
+	-create User model and registration flow
+
+-Default things to Red
+	-if you click twice in one day, it overwrites the old checkin with the new one.
+
+-Create individual habit details view
+
+-Bootstrap it up
+

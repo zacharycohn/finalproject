@@ -21,9 +21,9 @@ class Checkin < ActiveRecord::Base
 		where created_at: (Time.now - 7.days)..Time.now
 	end
 
-	def self.days_ago(term)
-		n = term
-		where created_at: (Time.now - n.days)..Time.now
+	def self.today
+		time = Time.new
+		where created_at: (Time.now - time.hour - time.min)..Time.now
 	end
 
 	def to_s
