@@ -1,0 +1,35 @@
+<% time = Time.new %>
+
+<h1>Today's Date is: <%= "#{time.strftime("%B %d")}" %></h1>
+
+<p>Your habits for the day:</p>
+<table>
+	<thead>
+		<tr>
+			<th>Habit</th>
+			<th>Green</th>
+			<th>Yellow</th>
+			<th>Red</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @habit.each do |h| %>
+			<tr>
+				<!-- if active -->
+				<td><%= h.name %></td>
+				<td>
+					<%= link_to "Green", habit_checkins_path(status: "green", habit_id: h.id), method: 'POST' %> 
+					<%= h.checkins.green.last_week.count %>
+				</td>
+				<td>
+					<%= link_to "Yellow", habit_checkins_path(status: "yellow", habit_id: h.id), method: 'POST' %> 
+				</td>
+				<td>
+					<%= link_to "Red", habit_checkins_path(status: "red", habit_id: h.id), method: 'POST' %> 
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<p><%= link_to "Add a new habit", new_habit_path %></p>

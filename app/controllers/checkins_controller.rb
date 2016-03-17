@@ -1,4 +1,6 @@
 class CheckinsController < ApplicationController
+	before_filter :find_habit
+
 	def index
 		if params.key? :status
 			@checkin = Checkin.where(status: params[:status])
@@ -7,17 +9,22 @@ class CheckinsController < ApplicationController
 	#	elsif params.key? :date and :status
 			#probably will have to do this at some point
 		else #all checkins
-			@checkin = Checkin.all
+			@checkin = @habit.checkins
 		end
+	end
+
+	def new
+		@checkin = @habit.checkins.build
+		# form_for [@habit, @checkin] do |f| 
 	end
 
 	def create
 		time = Time.new
-		@checkin = Checkin.new(checkin_params)
+		@checkin = @habit.checkins.build(status: params[:status])
 		@checkin.date = time.inspect
 
 		if @checkin.save
-			redirect_to habits_path
+			redirect_to today_habits_path
 		else
 			flash.now[:error] = habit.errors.messages.first.join(' ')
 		end
@@ -25,7 +32,11 @@ class CheckinsController < ApplicationController
 	end
 
 	private
-		def checkin_params
-			params.permit(:status, :habit_id)
-		end
+	def checkin_params
+		params.require(:checkin).permit(:status, :habit_id)
+	end
+
+	def find_habit
+		@habit = Habit.find(params[:habit_id])
+	end
 end

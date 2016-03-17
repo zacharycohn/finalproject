@@ -7,10 +7,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<p><%= link_to "Daily Display", habits_path %> | 
-		<%= link_to "Weekly View", habits_path(display: "week") %> | 
-		<%= link_to "Monthly View", habits_path(display: "month") %> | 
-		<%= link_to "Habit Stats", habits_path(display: "stats") %></p>
+	<p><%= link_to "Daily Display", today_habits_path %> | 
+		<%= link_to "Weekly View", week_habits_path %> | 
+		<%= link_to "Monthly View", month_habits_path %> | 
+		<%= link_to "Habit Stats", stats_habits_path %></p>
 
 <%= yield %>
 

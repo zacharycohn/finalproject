@@ -1,14 +1,16 @@
 Rails.application.routes.draw do
-  root 'habits#index'
+  root 'habits#today'
 
   resources :habits do
     collection do
+      get 'today'
       get 'week'
       get 'month'
       get 'stats'
     end
+
+    resources :checkins
   end
-  resources :checkins
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
