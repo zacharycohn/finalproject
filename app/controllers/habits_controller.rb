@@ -5,15 +5,15 @@ class HabitsController < ApplicationController
 	end
 
 	def today
-		@habit = Habit.all.active #current_user.habits.where(...)
+		@habits = current_user.habits.where(active: "true") #Habit.all.active #current_user.habits.where(...)
 	end
 
 	def new
-		@habit = Habit.new #current_user.habits.build
+		@habit = current_user.habits.build #Habit.new #current_user.habits.build
 	end
 
 	def create
-		@habit = Habit.new(habit_params) #current_user.habits.build(...)
+		@habit = current_user.habits.build(habit_params) #Habit.new(habit_params) #current_user.habits.build(...)
 		@habit[:active] = "true"
 		
 		if @habit.save
@@ -29,8 +29,9 @@ class HabitsController < ApplicationController
 	end
 
 	def week
-		@habit = Habit.all.active
+		@habits = current_user.habits.where(active: "true") #Habit.all.active
 	end
+
 
 	private
 		def habit_params

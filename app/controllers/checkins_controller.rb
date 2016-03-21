@@ -15,16 +15,22 @@ class CheckinsController < ApplicationController
 
 	def new
 		@checkin = @habit.checkins.build
+
 		# form_for [@habit, @checkin] do |f| 
 	end
 
 	def create
 		time = Time.new
+		#check the previous checkin. Was it today? If so, set update to true
+
+
 		@checkin = @habit.checkins.build(status: params[:status])
 		@checkin.date = time.inspect
 
-		if @checkin.save
+		if @checkin.save #update == false
+			flash[:notice] = @checkin.status
 			redirect_to today_habits_path
+		#elsif update == true
 		else
 			flash.now[:error] = habit.errors.messages.first.join(' ')
 		end

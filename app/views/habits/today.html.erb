@@ -2,34 +2,46 @@
 
 <h1>Today's Date is: <%= "#{time.strftime("%B %d")}" %></h1>
 
-<p>Your habits for the day: </p>
-<table>
-	<thead>
-		<tr>
-			<th>Habit</th>
-			<th>Green</th>
-			<th>Yellow</th>
-			<th>Red</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @habit.each do |h| %>
-			<tr>
-				<!-- if active -->
-				<td><%= h.name %></td>
-				<td bgcolor="00cc00">
-					<%= link_to "Green", habit_checkins_path(status: "green", habit_id: h.id), method: 'POST' %> 
-					<% # h.checkins.green.today.count %>
-				</td>
-				<td bgcolor="ffff00">
-					<%= link_to "Yellow", habit_checkins_path(status: "yellow", habit_id: h.id), method: 'POST' %> 
-				</td>
-				<td bgcolor="ff0000">
-					<%= link_to "Red", habit_checkins_path(status: "red", habit_id: h.id), method: 'POST' %> 
-				</td>
-			</tr>
-		<% end %>
-	</tbody>
-</table>
+<% if flash[:notice] == "green" %>
+	<div class="alert alert-success" role="alert"><%= "Nice job! Keep it up." %></div>
+<% elsif flash[:notice] == "yellow" %>
+	<div class="alert alert-warning" role="alert"><%= "Ehh.. is that the best you can do?" %></div>
+<% elsif flash[:notice] == "red" %>
+	<div class="alert alert-danger" role="alert"><%= "Oh come on. You gonna give up like that?" %></div>
+<% end %>
 
-<p><%= link_to "Add a new habit", new_habit_path %></p>
+
+<p><h3>Your habits for the day: </h3></p>
+<div class="col-md-4">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+					<h2><th>Habit</th></h2>
+					<th>Green</th>
+					<th>Yellow</th>
+					<th>Red</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @habits.each do |h| %>
+				<tr>
+					<!-- if active -->
+					<td><h3><div class="label label-default"><%= h.name %></span></h3></td>
+					<!-- <td bgcolor="00cc00"> --> <td>
+						<h3><div class="label label-success"><%= link_to "Green", habit_checkins_path(status: "green", habit_id: h.id), method: 'POST' %> </span></h3>
+						<% # h.checkins.green.today.count %>
+					</td>
+					<!--<td bgcolor="ffff00"> --> <td>
+						<h3><div class="label label-warning"><%= link_to "Yellow", habit_checkins_path(status: "yellow", habit_id: h.id), method: 'POST' %></span> </h3>
+					</td>
+					<!-- <td bgcolor="ff0000"> --> <td>
+						<h3><div class="label label-danger"><%= link_to "Red", habit_checkins_path(status: "red", habit_id: h.id), method: 'POST' %> </span></h3>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+
+	<h3><p><%= link_to "Add a new habit", new_habit_path %></p></h3>
+	
+</div>

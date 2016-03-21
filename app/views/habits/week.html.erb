@@ -1,41 +1,41 @@
-<h1> Weekly View </h1>
-
 <% time = Time.new %>
 
-<h1>Week starting <%= "#{(Time.now - 7.days).strftime("%B %d")}" %></h1>
-
-<p>Your habits for the week</p>
-<table>
-	<thead>
-		<tr>
-			<th>Habit</th>
-			<% 6.downto(0) do |d| %>
-			<th><%= "#{(Time.now - d.days).strftime("%A")}" %></th>
-			<% end %>
-		</tr>
-	</thead>
-	<tbody>
-		<% @habit.each do |h| %>
+<div class="col-md-8">
+	<h1>Week starting <%= "#{(Time.now - 7.days).strftime("%B %d")}" %></h1>
+	<table class="table table-bordered">
+		<thead>
 			<tr>
-				<!-- if active -->
-				<td><%= h.name %></td>
-				<% checkins_this_week = h.checkins.last(7) %>
-				<% checkins_this_week.reverse_each do |c| %>
-					<!-- <td>-->
-						<% if c.status == "green" %>
-							<td bgcolor="00cc00">Green
-						<% elsif c.status == "yellow" %>
-							<td bgcolor="ffff00">Yellow
-						<% elsif c.status == "red" %>
-							<td bgcolor="ff0000">Red
-						<% else %>
-							problem
-						<% end %>
-					</td>
+				<th>Habit</th>
+				<% 6.downto(0) do |d| %>
+				<th><%= "#{(Time.now - d.days).strftime("%a")}" %></th>
 				<% end %>
 			</tr>
-		<% end %>
-	</tbody>
-</table>
+		</thead>
+		<tbody>
+			<% @habits.each do |h| %>
+				<tr>
+					<!-- if active -->
+					<td><h2><div class="label label-default"><%= h.name %></span></h2></td>
+					<% checkins_this_week = h.checkins.last(7) %>
+					<% checkins_this_week.reverse_each do |c| %>
+						<!-- <td>-->
+							<% if c.status == "green" %>
+								<td bgcolor="00cc00">
+							<% elsif c.status == "yellow" %>
+								<td bgcolor="ffff00">
+							<% elsif c.status == "red" %>
+								<td bgcolor="ff0000">
+							<% else %>
+								problem
+							<% end %>
+						</td>
+					<% end %>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
 
-<p><%= link_to "Add a new habit", new_habit_path %></p>
+	<h3><p><%= link_to "Add a new habit", new_habit_path %></p></h3>
+
+</div>
+
