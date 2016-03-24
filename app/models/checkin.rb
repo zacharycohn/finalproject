@@ -5,6 +5,10 @@ class Checkin < ActiveRecord::Base
 		self.where("habit_id LIKE :term OR status LIKE :term OR date LIKE :term", term: "%#{term}%")
 	end
 
+	# def self.previousCheckin(habit)
+	# 	self.where("habit_id LIKE :habit",
+	# end
+
 	def self.green
 		where status: "green"
 	end

@@ -20,26 +20,32 @@ class CheckinsController < ApplicationController
 	end
 
 	def create
-		time = Time.new
-		#check the previous checkin. Was it today? If so, set update to true
+		@checkin = @habit.checkins.build(status: checkin_params)
+		#@checkin.date = Time.inspect
 
-
-		@checkin = @habit.checkins.build(status: params[:status])
-		@checkin.date = time.inspect
-
-		if @checkin.save #update == false
+		if @checkin.save
 			flash[:notice] = @checkin.status
 			redirect_to today_habits_path
-		#elsif update == true
 		else
 			flash.now[:error] = habit.errors.messages.first.join(' ')
 		end
 
 	end
 
-	private
+	def update
+		@checkin = @habit.checkins.find(params[:id])
+		if @checkin.update(status: checkin_params)
+			flash[:notice] = @checkin.status
+			redirect_to today_habits_path
+		else
+			flash.now[:error] = habit.errors.messages.first.join(' ')
+		end
+	end
+
+
+private
 	def checkin_params
-		params.require(:checkin).permit(:status, :habit_id)
+		params.require(:status)
 	end
 
 	def find_habit

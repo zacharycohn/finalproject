@@ -7,7 +7,7 @@
 			<tr>
 				<th>Habit</th>
 				<% 6.downto(0) do |d| %>
-				<th><%= "#{(Time.now - d.days).strftime("%a")}" %></th>
+					<th><%= "#{(Time.now - d.days).strftime("%a")}" %></th>
 				<% end %>
 			</tr>
 		</thead>

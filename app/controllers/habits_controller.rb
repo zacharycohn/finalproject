@@ -23,10 +23,10 @@ class HabitsController < ApplicationController
 		end
 	end
 
-	def show
+	#def show
 		# @habit = Habit.all? { |h|  }
 
-	end
+	#end
 
 	def week
 		@habits = current_user.habits.where(active: "true") #Habit.all.active
