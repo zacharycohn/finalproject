@@ -6,8 +6,14 @@ TODOs:
 
 -Create individual habit details view
 
--remove Date from checkins model
+-?(remove Date from checkins model)
+
+-export data
+
+-add blank days/default to red when day changes (kind of done)
 
 bugs:
 add env variables for heroku
-fix starting day. why is it a day later? UTC problems?
+
+current project:
+-add week mover

@@ -1,7 +1,7 @@
 class HabitsController < ApplicationController
 	
 	def index
-
+		
 	end
 
 	def today
