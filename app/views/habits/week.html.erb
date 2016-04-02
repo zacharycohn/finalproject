@@ -4,14 +4,17 @@
 
 <div class="row">
 	<div class="col-md-3">
-		<button type="button" class="btn btn-lg btn-default">Previous Week</button>
+		<!-- <button type="button" class="btn btn-lg btn-default">Previous Week</button> -->
+		<%= link_to "Previous Week", previousWeek_checkins_path %>
 	</div>
 	<div class="col-md-6">
 		<h2>Week starting <%= "#{(Time.now - 7.days).strftime("%B %d")}" %></h2>
 	</div>
 	
 	<div class="col-md-3">
-			<button type="button" class="btn btn-lg btn-default">Next Week</button>
+			<!-- <button type="button" class="btn btn-lg btn-default">Next Week</button> -->
+			<%= link_to "Next Week", nextWeek_checkins_path %>
+
 	</div>
 </div>
 
@@ -19,7 +22,7 @@
 	<thead>
 		<tr>
 			<th>Habit</th>
-			<% 0.upto(6) do |d| %> <!-- this is last 7 days, not the current week -->
+			<% Checkin.endDay.upto(Checkin.startDay) do |d| %> <!-- this is last 7 days, not the current week -->
 				<th><%= "#{(Time.now - d.days).strftime("%a - %d")}" %></th>
 			<% end %>
 		</tr>
@@ -29,7 +32,7 @@
 			<tr>
 				<!-- if active -->
 				<td><h2><div class="label label-default"><%= h.name %></span></h2></td>
-
+				<%=  %>
 				<% checkins_this_week = h.checkins.last(7) %>
 				<% checkins_this_week.reverse! %>
 				<% 0.upto(checkins_this_week.count - 1) do |n| #checkins_this_week.reverse_each do |c| %>

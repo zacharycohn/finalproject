@@ -2,6 +2,13 @@ Rails.application.routes.draw do
   devise_for :users
   root 'habits#today'
 
+  resources :checkins, only: [] do      
+    collection do
+        get 'previousWeek'
+        get 'nextWeek'
+      end
+    end
+
   resources :habits do
     collection do
       get 'today'

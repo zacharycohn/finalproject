@@ -1,11 +1,7 @@
 class CheckinsController < ApplicationController
 	before_filter :find_habit
-	attr_accessor :startDay, :endDay
 
 	def index
-		@startDay = 6
-		@endDay = 0
-
 		if params.key? :status
 			@checkin = Checkin.where(status: params[:status])
 		elsif params.key? :date
@@ -53,6 +49,18 @@ class CheckinsController < ApplicationController
 		else
 			flash.now[:error] = habit.errors.messages.first.join(' ')
 		end
+	end
+
+	def nextWeek
+		Checkin.startDay += 7
+		Checkin.endDay += 7
+		redirect_to week_habits
+	end
+
+	def previousWeek
+		Checkin.startDay -= 7
+		Checkin.endDay -= 7
+		redirect_to week_habits
 	end
 
 
