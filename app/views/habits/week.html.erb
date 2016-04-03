@@ -22,7 +22,7 @@
 	<thead>
 		<tr>
 			<th>Habit</th>
-			<% Checkin.endDay.upto(Checkin.startDay) do |d| %> <!-- this is last 7 days, not the current week -->
+			<% Checkin.endDay.upto(Checkin.startDay) do |d| %>
 				<th><%= "#{(Time.now - d.days).strftime("%a - %d")}" %></th>
 			<% end %>
 		</tr>
@@ -30,33 +30,71 @@
 	<tbody>
 		<% @habits.each do |h| %>
 			<tr>
-				<!-- if active -->
+				<!-- ToDo: if active -->
 				<td><h2><div class="label label-default"><%= h.name %></span></h2></td>
-				<%=  %>
-				<% checkins_this_week = h.checkins.last(7) %>
-				<% checkins_this_week.reverse! %>
-				<% 0.upto(checkins_this_week.count - 1) do |n| #checkins_this_week.reverse_each do |c| %>
-					<% iterDate = (Time.now - n.to_i.days).strftime("%B %d") %>
-					
-					<% if checkins_this_week[n].date.to_s.include? iterDate %>
-						<% if checkins_this_week[n].status == "green" %>
-							<td bgcolor="00cc00">
-						<% elsif checkins_this_week[n].status == "yellow" %>
-							<td bgcolor="ffff00">
-						<% elsif checkins_this_week[n].status == "red" %>
-							<td bgcolor="ff0000">
+				<% checkinsThisWeek = h.checkins.last(7) %> <!-- ToDo: this will still have to change -->
+				<% checkinsThisWeek.reverse! %>
+				
+
+				<% if checkinsThisWeek.count == 7 && 1==2 %>
+					<!-- each day has a checkin -->
+					<% checkinsThisWeek.each do |checkinBlock| %>
+						<% if checkinBlock.status == "green" %>
+							<td bgcolor="00cc00">a
+						<% elsif checkinBlock.status == "yellow" %>
+							<td bgcolor="ffff00">a
+						<% elsif checkinBlock.status == "red" %>
+							<td bgcolor="ff0000">a
 						<% else %>
 							problem
 						<% end %>
-					<% else %>
-						<td bgcolor="0000ff">No data.
+						</td>
 					<% end %>
-					</td>
-					<%# n += 1 %>
+				<% else %>
+
+
+					<!-- if at least one checkin is missing -->
+					<% dayArray = [] %>
+					<% checkinArray = [] %>
+					<% weekArray = Array.new(7) %>
+
+					<% Checkin.endDay.upto(Checkin.startDay) do |d| %>
+						<% dayArray.push((Time.now - d.days).strftime("%B %d %Y")) %>
+					<% end %>
+
+
+					<% checkinsThisWeek.each do |checkinBlock| %>
+						<% found = false %>
+						<% n = 0 %>
+						<% while found == false && n < 7 %>
+							<% if checkinBlock.date.to_s.include? dayArray[n] %>
+								<% weekArray[n] = checkinBlock %>
+								<% found = true %>
+							<% else %>
+								<% n += 1 %>
+							<% end %>
+						<% end %>
+					<% end %>
+
+					<% weekArray.each do |checkinBlock| %>
+						<% if checkinBlock.nil? %>
+							<td bgcolor="0000ff">no data
+						<% else %>
+							<% if checkinBlock.status == "green" %>
+								<td bgcolor="00cc00">b
+							<% elsif checkinBlock.status == "yellow" %>
+								<td bgcolor="ffff00">b
+							<% elsif checkinBlock.status == "red" %>
+								<td bgcolor="ff0000">b
+							<% else %>
+								problem
+							<% end %>
+							</td>
+						<% end %>
+					<% end %>
 				<% end %>
-				<% checkins_this_week.count.upto(6) do |n| %>
-					<td bgcolor="0000ff">No data.
-				<% end %>
+
+
 			</tr>
 		<% end %>
 	</tbody>

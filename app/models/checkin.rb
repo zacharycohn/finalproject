@@ -41,6 +41,15 @@ class Checkin < ActiveRecord::Base
 		where created_at: (Time.now - 7.days)..Time.now
 	end
 
+	def self.get_week
+		startOfWeek = @startDay + 1 
+
+		#potential bug here. Will it grab something from one week ago but earlier in the day?
+		where created_at: (Time.now - startOfWeek.days)..(Time.now - @endDay.days)
+
+		#SELECT * FROM table WHERE date=(cur_date-7) LIMIT 7
+	end
+
 	# def self.today
 	# 	time = Time.new
 	# 	where created_at: (Time.now - time.hour - time.min)..Time.now

@@ -6,10 +6,15 @@ TODOs:
 
 -export data
 
--add blank days/default to red when day changes (kind of done)
+-visually change "Daily display" items once you've selected one for the day
 
-bugs:
-add env variables for heroku
+-add week mover
+
+
+
+Bugs:
+-add env variables for heroku
+-fix get_week in Model
+
 
 current project:
--add week mover
