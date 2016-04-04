@@ -4,7 +4,7 @@
 <h1>Today's Date is: <%= "#{time.strftime("%B %d")}" %></h1>
 
 <% if flash[:notice] == "green" %>
-	<div class="alert alert-success" role="alert"><%= "Nice job! Keep it up." %></div>
+	<div class="alert alert-success" role="alert"><%= "Nice job! Keep it up."  %></div>
 <% elsif flash[:notice] == "yellow" %>
 	<div class="alert alert-warning" role="alert"><%= "Ehh.. is that the best you can do?" %></div>
 <% elsif flash[:notice] == "red" %>

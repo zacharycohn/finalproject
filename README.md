@@ -8,7 +8,7 @@ TODOs:
 
 -visually change "Daily display" items once you've selected one for the day
 
--add week mover
+-NO SERIOUSLY REMOVE date AND JUST USE UPDATED_ON
 
 
 

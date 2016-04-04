@@ -15,6 +15,8 @@ Rails.application.routes.draw do
       get 'week'
       get 'month'
       get 'stats'
+      # get 'previousWeek'
+      # get 'nextWeek'
     end
 
     resources :checkins

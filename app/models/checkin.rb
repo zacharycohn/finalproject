@@ -1,7 +1,8 @@
 class Checkin < ActiveRecord::Base
 	belongs_to :habit
-	attr_accessor :startDay, :endDay
+	#attr_accessor :startDay, :endDay
 
+#refactor
 	@startDay = 6
 	@endDay = 0
 
@@ -14,7 +15,7 @@ class Checkin < ActiveRecord::Base
 	end
 
 	def self.startDay=(str)
-		@startDay += str
+		@startDay = str
 	end
 
 	def self.endDay
@@ -22,38 +23,29 @@ class Checkin < ActiveRecord::Base
 	end
 
 	def self.endDay=(str)
-		@endDay += str
-	end
-
-	# def self.green
-	# 	where status: "green"
-	# end
-
-	# def self.yellow
-	# 	where status: "yellow"
-	# end
-	
-	# def self.red
-	# 	where status: "red"
-	# end
-
-	def self.last_week
-		where created_at: (Time.now - 7.days)..Time.now
+		@endDay = str
 	end
 
 	def self.get_week
-		startOfWeek = @startDay + 1 
+		#maybe not needed
+		#startOfWeek = @startDay + 1 
 
 		#potential bug here. Will it grab something from one week ago but earlier in the day?
-		where created_at: (Time.now - startOfWeek.days)..(Time.now - @endDay.days)
+		#where created_at: (Time.now - startOfWeek.days)..(Time.now - @endDay.days)
+	
+		weekOfData = Array.new
+		x = 0
 
-		#SELECT * FROM table WHERE date=(cur_date-7) LIMIT 7
+		Checkin.endDay.upto(Checkin.startDay) do |d|
+			#refactor
+#			targetDate = (Time.now - d.days).strftime("%B %d %Y")
+			targetDate = (Time.now - d.days).strftime("%Y-%m-%d")
+#			weekOfData[x] = self.where("date LIKE :term", term: "%#{targetDate}%").last
+			weekOfData[x] = self.where("updated_at LIKE :term", term: "%#{targetDate}%").last
+			x += 1
+		end
+		weekOfData
 	end
-
-	# def self.today
-	# 	time = Time.new
-	# 	where created_at: (Time.now - time.hour - time.min)..Time.now
-	# end
 
 	def to_s
 		"empty"

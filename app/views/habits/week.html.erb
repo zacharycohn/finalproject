@@ -5,7 +5,9 @@
 <div class="row">
 	<div class="col-md-3">
 		<!-- <button type="button" class="btn btn-lg btn-default">Previous Week</button> -->
-		<%= link_to "Previous Week", previousWeek_checkins_path %>
+		<%= link_to "Previous Week", previousWeek_checkins_path %> <!-- refactor -->
+		<%#= link_to "Previous Week", previousWeek_habits_path %>
+
 	</div>
 	<div class="col-md-6">
 		<h2>Week starting <%= "#{(Time.now - 7.days).strftime("%B %d")}" %></h2>
@@ -13,8 +15,7 @@
 	
 	<div class="col-md-3">
 			<!-- <button type="button" class="btn btn-lg btn-default">Next Week</button> -->
-			<%= link_to "Next Week", nextWeek_checkins_path %>
-
+			<%= link_to "Next Week", nextWeek_checkins_path %> <!-- refactor back and forth to _habits_path and _checkins_path -->
 	</div>
 </div>
 
@@ -32,8 +33,12 @@
 			<tr>
 				<!-- ToDo: if active -->
 				<td><h2><div class="label label-default"><%= h.name %></span></h2></td>
-				<% checkinsThisWeek = h.checkins.last(7) %> <!-- ToDo: this will still have to change -->
+				<%# checkinsThisWeek = h.checkins.last(7) %> <!-- ToDo: this will still have to change -->
+				<% checkinsThisWeek = h.checkins.get_week %>
 				<% checkinsThisWeek.reverse! %>
+				<%# checkinsThisWeek.each do |n| %>
+					<%#= n.status %>
+				<%# end %>
 				
 
 				<% if checkinsThisWeek.count == 7 && 1==2 %>
@@ -59,7 +64,9 @@
 					<% weekArray = Array.new(7) %>
 
 					<% Checkin.endDay.upto(Checkin.startDay) do |d| %>
-						<% dayArray.push((Time.now - d.days).strftime("%B %d %Y")) %>
+						<%#refactor%>
+						<%# dayArray.push((Time.now - d.days).strftime("%B %d %Y")) %>
+						<% dayArray.push((Time.now - d.days).strftime("%Y-%m-%d")) %>
 					<% end %>
 
 
@@ -67,10 +74,16 @@
 						<% found = false %>
 						<% n = 0 %>
 						<% while found == false && n < 7 %>
-							<% if checkinBlock.date.to_s.include? dayArray[n] %>
+							<% begin %>
+							<%# refactor %>
+							<%# if checkinBlock.date.to_s.include? dayArray[n] %>
+							<% if checkinBlock.updated_at.to_s.include? dayArray[n] %>
 								<% weekArray[n] = checkinBlock %>
 								<% found = true %>
 							<% else %>
+								<% n += 1 %>
+							<% end %>
+							<% rescue %>
 								<% n += 1 %>
 							<% end %>
 						<% end %>
