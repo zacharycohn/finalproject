@@ -29,7 +29,7 @@
 					<!-- if active -->
 					<td><h3><div class="label label-default"><%= h.name %></span></h3></td>
 					<td>
-						<% if !(h.checkins.empty?) and h.checkins.last.updated_at.to_s.include? time.getutc.strftime("%Y-%m-%d") %>
+						<% if !(h.checkins.empty?) and h.checkins.last.date.to_s.include? time.localtime.strftime("%Y-%m-%d") %>
 							<% last_id = h.checkins.last.id %>
 							<h3><div class="label label-success"><%= link_to "Green", habit_checkin_path(status: "green", habit_id: h.id, id: last_id), method: 'PATCH' %> </span></h3>
 						<% else %>
@@ -38,7 +38,7 @@
 						<% end %>
 					</td>
 					<!--<td bgcolor="ffff00"> --> <td>
-						<% if !(h.checkins.empty?) and h.checkins.last.updated_at.to_s.include? time.getutc.strftime("%Y-%m-%d") %>
+						<% if !(h.checkins.empty?) and h.checkins.last.date.to_s.include? time.localtime.strftime("%Y-%m-%d") %>
 							<% last_id = h.checkins.last.id %>
 							<h3><div class="label label-warning"><%= link_to "Yellow", habit_checkin_path(status: "yellow", habit_id: h.id, id: last_id), method: 'PATCH' %></span> </h3>
 						<% else %>
@@ -47,7 +47,7 @@
 						<% end %>
 					</td>
 					<!-- <td bgcolor="ff0000"> --> <td>
-						<% if !(h.checkins.empty?) and h.checkins.last.updated_at.to_s.include? time.getutc.strftime("%Y-%m-%d") %>
+						<% if !(h.checkins.empty?) and h.checkins.last.date.to_s.include? time.localtime.strftime("%Y-%m-%d") %>
 							<% last_id = h.checkins.last.id %>
 							<h3><div class="label label-danger"><%= link_to "Red", habit_checkin_path(status: "red", habit_id: h.id, id: last_id), method: 'PATCH' %> </span></h3>
 						<% else %>

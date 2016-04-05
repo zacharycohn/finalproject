@@ -22,7 +22,7 @@ class CheckinsController < ApplicationController
 	def create
 		@checkin = @habit.checkins.build(status: checkin_params)
 		time = Time.now
-		checkinDate = time.strftime("%B %d %Y")
+		checkinDate = time.strftime("%Y-%m-%d")
 		@checkin.date = checkinDate
 		@checkin.description = "pants party"
 
@@ -39,7 +39,7 @@ class CheckinsController < ApplicationController
 		@checkin = @habit.checkins.find(params[:id])
 
 		time = Time.now
-		checkinDate = time.strftime("%B %d %Y")
+		checkinDate = time.strftime("%Y-%m-%d")
 		@checkin.date = checkinDate
 		@checkin.description = "pants party"
 		
