@@ -24,6 +24,7 @@ class Checkin < ActiveRecord::Base
 
 	def self.endDay=(str)
 		@endDay = str
+<<<<<<< HEAD
 	end
 
 	def self.get_week
@@ -45,6 +46,46 @@ class Checkin < ActiveRecord::Base
 			x += 1
 		end
 		weekOfData
+=======
+	end
+
+	# def self.green
+	# 	where status: "green"
+	# end
+
+	# def self.yellow
+	# 	where status: "yellow"
+	# end
+	
+	# def self.red
+	# 	where status: "red"
+	# end
+
+	def self.last_week
+		where created_at: (Time.now - 7.days)..Time.now
+	end
+
+	def self.get_week
+#		startOfWeek = @startDay + 1 
+		#potential bug here. Will it grab something from one week ago but earlier in the day?
+#		where created_at: (Time.now - startOfWeek.days)..(Time.now - @endDay.days)
+
+
+		weekOfData = Array.new
+ 		x = 0
+ 
+ 		Checkin.endDay.upto(Checkin.startDay) do |d|
+ 			#refactor
+ #			targetDate = (Time.now - d.days).strftime("%B %d %Y")
+ #			weekOfData[x] = self.where("date LIKE :term", term: "%#{targetDate}%").last
+
+ 			targetDate = (Time.now - d.days).strftime("%Y-%m-%d")
+ 			weekOfData[x] = self.where("date LIKE :term", term: "%#{targetDate}%").last
+ 			x += 1
+ 		end
+ 		weekOfData
+
+>>>>>>> tempbranch
 	end
 
 	def to_s

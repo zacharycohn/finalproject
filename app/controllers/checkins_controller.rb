@@ -1,8 +1,13 @@
 class CheckinsController < ApplicationController
+<<<<<<< HEAD
 	#ToDO: figure out how to uncomment this when next/previousWeek links are pressed.
 #	before_filter :find_habit
+=======
+	#before_filter :find_habit
+>>>>>>> tempbranch
 
 	def index
+		find_habit
 		if params.key? :status
 			@checkin = Checkin.where(status: params[:status])
 			#refactor
@@ -21,7 +26,10 @@ class CheckinsController < ApplicationController
 	end
 
 	def create
+		find_habit
+
 		@checkin = @habit.checkins.build(status: checkin_params)
+<<<<<<< HEAD
 		
 		#refactor
 		#time = Time.now
@@ -29,6 +37,11 @@ class CheckinsController < ApplicationController
 		#@checkin.date = checkinDate
 
 		#ToDO: probably change pants party
+=======
+		time = Time.now
+		checkinDate = time.strftime("%Y-%m-%d")
+		@checkin.date = checkinDate
+>>>>>>> tempbranch
 		@checkin.description = "pants party"
 
 		if @checkin.save
@@ -41,12 +54,20 @@ class CheckinsController < ApplicationController
 	end
 
 	def update
+		find_habit
+
 		@checkin = @habit.checkins.find(params[:id])
 
+<<<<<<< HEAD
 		#refactor
 #		time = Time.now
 #		checkinDate = time.strftime("%B %d %Y")
 #		@checkin.date = checkinDate
+=======
+		time = Time.now
+		checkinDate = time.strftime("%Y-%m-%d")
+		@checkin.date = checkinDate
+>>>>>>> tempbranch
 		@checkin.description = "pants party"
 		
 		if @checkin.update(status: checkin_params)
@@ -57,7 +78,10 @@ class CheckinsController < ApplicationController
 		end
 	end
 
+<<<<<<< HEAD
 	#refactor maybe
+=======
+>>>>>>> tempbranch
 	def previousWeek
 		Checkin.startDay += 7
 		Checkin.endDay += 7
@@ -65,7 +89,10 @@ class CheckinsController < ApplicationController
 		redirect_to week_habits_path
 	end
 
+<<<<<<< HEAD
 	#refactor maybe
+=======
+>>>>>>> tempbranch
 	def nextWeek
 		if Checkin.endDay >= 7
 			Checkin.startDay -= 7

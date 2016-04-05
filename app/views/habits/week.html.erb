@@ -33,8 +33,12 @@
 			<tr>
 				<!-- ToDo: if active -->
 				<td><h2><div class="label label-default"><%= h.name %></span></h2></td>
+<<<<<<< HEAD
 				<%# checkinsThisWeek = h.checkins.last(7) %> <!-- ToDo: this will still have to change -->
 				<% checkinsThisWeek = h.checkins.get_week %>
+=======
+				<% checkinsThisWeek = h.checkins.get_week %> <!-- #.last(7) -->
+>>>>>>> tempbranch
 				<% checkinsThisWeek.reverse! %>
 				<%# checkinsThisWeek.each do |n| %>
 					<%#= n.status %>
@@ -64,8 +68,11 @@
 					<% weekArray = Array.new(7) %>
 
 					<% Checkin.endDay.upto(Checkin.startDay) do |d| %>
+<<<<<<< HEAD
 						<%#refactor%>
 						<%# dayArray.push((Time.now - d.days).strftime("%B %d %Y")) %>
+=======
+>>>>>>> tempbranch
 						<% dayArray.push((Time.now - d.days).strftime("%Y-%m-%d")) %>
 					<% end %>
 
@@ -75,12 +82,22 @@
 						<% n = 0 %>
 						<% while found == false && n < 7 %>
 							<% begin %>
+<<<<<<< HEAD
 							<%# refactor %>
 							<%# if checkinBlock.date.to_s.include? dayArray[n] %>
 							<% if checkinBlock.updated_at.to_s.include? dayArray[n] %>
 								<% weekArray[n] = checkinBlock %>
 								<% found = true %>
 							<% else %>
+=======
+								<% if checkinBlock.date.to_s.include? dayArray[n] %>
+									<% weekArray[n] = checkinBlock %>
+									<% found = true %>
+								<% else %>
+									<% n += 1 %>
+								<% end %>
+							<% rescue %>
+>>>>>>> tempbranch
 								<% n += 1 %>
 							<% end %>
 							<% rescue %>
