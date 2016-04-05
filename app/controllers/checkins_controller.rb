@@ -1,7 +1,8 @@
 class CheckinsController < ApplicationController
-	before_filter :find_habit
+	#before_filter :find_habit
 
 	def index
+		find_habit
 		if params.key? :status
 			@checkin = Checkin.where(status: params[:status])
 		elsif params.key? :date
@@ -20,6 +21,8 @@ class CheckinsController < ApplicationController
 	end
 
 	def create
+		find_habit
+
 		@checkin = @habit.checkins.build(status: checkin_params)
 		time = Time.now
 		checkinDate = time.strftime("%Y-%m-%d")
@@ -36,6 +39,8 @@ class CheckinsController < ApplicationController
 	end
 
 	def update
+		find_habit
+
 		@checkin = @habit.checkins.find(params[:id])
 
 		time = Time.now
@@ -51,19 +56,20 @@ class CheckinsController < ApplicationController
 		end
 	end
 
-	def nextWeek
+	def previousWeek
 		Checkin.startDay += 7
 		Checkin.endDay += 7
-		redirect_to week_habits
+
+		redirect_to week_habits_path
 	end
 
-	def previousWeek
+	def nextWeek
 		if Checkin.endDay >= 7
 			Checkin.startDay -= 7
 			Checkin.endDay -= 7
 		end
 		
-		redirect_to week_habits
+		redirect_to week_habits_path
 	end
 
 

@@ -14,7 +14,7 @@ class Checkin < ActiveRecord::Base
 	end
 
 	def self.startDay=(str)
-		@startDay += str
+		@startDay = str
 	end
 
 	def self.endDay
@@ -22,7 +22,7 @@ class Checkin < ActiveRecord::Base
 	end
 
 	def self.endDay=(str)
-		@endDay += str
+		@endDay = str
 	end
 
 	# def self.green
