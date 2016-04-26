@@ -36,7 +36,7 @@
 				<% checkinsThisWeek.reverse! %>
 				
 
-				<% if checkinsThisWeek.count == 7 && 1==2 %>
+				<% if checkinsThisWeek.count == 7 && 1==2 %> <!-- this is broken ToDo: -->
 					<!-- each day has a checkin -->
 					<% checkinsThisWeek.each do |checkinBlock| %>
 						<% if checkinBlock.status == "green" %>
@@ -85,11 +85,11 @@
 							<td bgcolor="0000ff">no data
 						<% else %>
 							<% if checkinBlock.status == "green" %>
-								<td bgcolor="00cc00">
+								<td bgcolor="00cc00"><%= checkinBlock.date %>
 							<% elsif checkinBlock.status == "yellow" %>
-								<td bgcolor="ffff00">
+								<td bgcolor="ffff00"><%= checkinBlock.date %>
 							<% elsif checkinBlock.status == "red" %>
-								<td bgcolor="ff0000">
+								<td bgcolor="ff0000"><%= checkinBlock.date %>
 							<% else %>
 								problem
 							<% end %>

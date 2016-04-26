@@ -17,17 +17,14 @@ class CheckinsController < ApplicationController
 
 	def new
 		@checkin = @habit.checkins.build
-		# form_for [@habit, @checkin] do |f| 
 	end
 
 	def create
 		find_habit
 
 		@checkin = @habit.checkins.build(status: checkin_params)
-		time = Time.now
-		checkinDate = time.strftime("%Y-%m-%d")
-		@checkin.date = checkinDate
-		@checkin.description = "pants party"
+		@checkin.date = params[:date]
+		@checkin.description = ""
 
 		if @checkin.save
 			flash[:notice] = @checkin.status
@@ -43,9 +40,7 @@ class CheckinsController < ApplicationController
 
 		@checkin = @habit.checkins.find(params[:id])
 
-		time = Time.now
-		checkinDate = time.strftime("%Y-%m-%d")
-		@checkin.date = checkinDate
+		@checkin.date = params[:date]
 		@checkin.description = "pants party"
 		
 		if @checkin.update(status: checkin_params)
@@ -54,6 +49,25 @@ class CheckinsController < ApplicationController
 		else
 			flash.now[:error] = habit.errors.messages.first.join(' ')
 		end
+	end
+
+	def nextDay
+		if Checkin.checkinDay > 0 
+			Checkin.checkinDay -= 1
+		end
+
+		redirect_to today_habits_path
+	end
+
+	def previousDay
+		Checkin.checkinDay += 1
+
+		redirect_to today_habits_path
+	end
+
+	def jumpToToday
+		Checkin.checkinDay = 0
+		redirect_to today_habits_path
 	end
 
 	def previousWeek

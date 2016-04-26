@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     collection do
         get 'previousWeek'
         get 'nextWeek'
+        get 'jumpToToday'
+        get 'previousDay'
+        get 'nextDay'
       end
     end
 
