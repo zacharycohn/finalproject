@@ -8,8 +8,7 @@
 /.bundle
 
 # Ignore fitbit config
-/config/initializers/omniauth.rb
-/app/views/habits/backup_week.html.erb
+/config/application.yml
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
@@ -19,3 +18,4 @@
 /log/*
 !/log/.keep
 /tmp
+/app/views/habits/backup_week.html.erb

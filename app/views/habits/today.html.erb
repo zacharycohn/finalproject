@@ -1,4 +1,4 @@
-<% time = Time.new %>
+<% time = Time.new.localtime %>
 <% # h.checkins.green.today.count %>
 
 <h1>Today's Date is: <%= "#{time.strftime("%B %d")}" %></h1>
@@ -27,16 +27,15 @@
 			<% @habits.each do |h| %>
 				<tr>
 					<!-- if active -->
+						<% labelType = "label label-default" %>
+
 						<% if !(h.checkins.empty?) and h.checkins.last.date.to_s.include? time.localtime.strftime("%Y-%m-%d") %>
-							<% labelType = "" %>
 							<% if h.checkins.last.status == "green" %>
 								<% labelType = "label label-success" %>
 							<% elsif h.checkins.last.status == "yellow" %>
 								<% labelType = "label label-warning" %>
 							<% elsif h.checkins.last.status == "red" %>
 								<% labelType = "label label-danger" %>
-							<% else %>
-								<% labelType = "label label-default" %>
 							<% end %>
 							<td><h3><div class="<%= labelType %>"><%= h.name %></span></h3></td>
 							<td>
@@ -44,7 +43,7 @@
 							<h3><div class="label label-success"><%= link_to "Green", habit_checkin_path(status: "green", habit_id: h.id, id: last_id), method: 'PATCH' %> </span></h3>
 						<% else %>
 							<!-- <p>newday!</p> -->
-							<td><h3><div class="label label-default"><%= h.name %></span></h3></td>
+							<td><h3><div class="<%= labelType %>"><%= h.name %></span></h3></td>
 							<td>
 							<h3><div class="label label-success"><%= link_to "Green", habit_checkins_path(status: "green", habit_id: h.id), method: 'POST' %> </span></h3>
 						<% end %>

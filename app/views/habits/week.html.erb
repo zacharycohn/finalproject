@@ -1,4 +1,4 @@
-<% time = Time.new %>
+<% time = Time.new.localtime %>
 
 <div class="col-md-8">
 
@@ -8,7 +8,7 @@
 		<%= link_to "Previous Week", previousWeek_checkins_path %>
 	</div>
 	<div class="col-md-6">
-		<h2>Week starting <%= "#{(Time.now - 7.days).strftime("%B %d")}" %></h2>
+		<h2>Week starting <%= "#{(time - 7.days).strftime("%B %d")}" %></h2>
 	</div>
 	
 	<div class="col-md-3">
@@ -23,7 +23,7 @@
 		<tr>
 			<th>Habit</th>
 			<% Checkin.endDay.upto(Checkin.startDay) do |d| %>
-				<th><%= "#{(Time.now - d.days).strftime("%a - %d")}" %></th>
+				<th><%= "#{(time - d.days).strftime("%a - %d")}" %></th>
 			<% end %>
 		</tr>
 	</thead>
@@ -40,11 +40,11 @@
 					<!-- each day has a checkin -->
 					<% checkinsThisWeek.each do |checkinBlock| %>
 						<% if checkinBlock.status == "green" %>
-							<td bgcolor="00cc00">a
+							<td bgcolor="00cc00">
 						<% elsif checkinBlock.status == "yellow" %>
-							<td bgcolor="ffff00">a
+							<td bgcolor="ffff00">
 						<% elsif checkinBlock.status == "red" %>
-							<td bgcolor="ff0000">a
+							<td bgcolor="ff0000">
 						<% else %>
 							problem
 						<% end %>
@@ -59,7 +59,7 @@
 					<% weekArray = Array.new(7) %>
 
 					<% Checkin.endDay.upto(Checkin.startDay) do |d| %>
-						<% dayArray.push((Time.now - d.days).strftime("%Y-%m-%d")) %>
+						<% dayArray.push((time - d.days).strftime("%Y-%m-%d")) %>
 					<% end %>
 
 
@@ -85,11 +85,11 @@
 							<td bgcolor="0000ff">no data
 						<% else %>
 							<% if checkinBlock.status == "green" %>
-								<td bgcolor="00cc00">b
+								<td bgcolor="00cc00">
 							<% elsif checkinBlock.status == "yellow" %>
-								<td bgcolor="ffff00">b
+								<td bgcolor="ffff00">
 							<% elsif checkinBlock.status == "red" %>
-								<td bgcolor="ff0000">b
+								<td bgcolor="ff0000">
 							<% else %>
 								problem
 							<% end %>
