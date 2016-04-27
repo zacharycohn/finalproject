@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :checkins, only: [] do      
     collection do
         get 'previousWeek'
+        get 'jumpToThisWeek'
         get 'nextWeek'
         get 'jumpToToday'
         get 'previousDay'

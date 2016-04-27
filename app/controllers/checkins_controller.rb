@@ -77,6 +77,13 @@ class CheckinsController < ApplicationController
 		redirect_to week_habits_path
 	end
 
+	def jumpToThisWeek
+		Checkin.startDay = 6
+		Checkin.endDay = 0
+
+		redirect_to week_habits_path
+	end
+
 	def nextWeek
 		if Checkin.endDay >= 7
 			Checkin.startDay -= 7

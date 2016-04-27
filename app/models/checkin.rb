@@ -64,7 +64,7 @@ class Checkin < ActiveRecord::Base
  #			targetDate = (Time.now - d.days).strftime("%B %d %Y")
  #			weekOfData[x] = self.where("date LIKE :term", term: "%#{targetDate}%").last
 
- 			targetDate = (Time.now - d.days).strftime("%Y-%m-%d")
+ 			targetDate = (Time.now.localtime - d.days).strftime("%Y-%m-%d")
  			weekOfData[x] = self.where("date LIKE :term", term: "%#{targetDate}%").last
  			x += 1
  		end

@@ -49,8 +49,7 @@
 				<tr>
 					<!-- if active -->
 						<% labelType = "label label-default" %>
-
-						<%# old: if !(h.checkins.empty?) and h.checkins.last.date.to_s.include? time.strftime("%Y-%m-%d") %>
+						<!-- ToDO Bug: super jenky. Why does .last.to_s work, but .getDate wouldn't? --> 
 						<% if !(h.checkins.empty?) and (h.checkins.getByDate(checkinDate).last.to_s == time.strftime("%Y-%m-%d")) %>
 						
 							<% if h.checkins.last.status == "green" %>
