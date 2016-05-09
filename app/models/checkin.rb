@@ -72,11 +72,11 @@ class Checkin < ActiveRecord::Base
 
 	end
 
-	def getDate
-		self.date
-	end
+#	def getDate
+#		self.date
+#	end
 
 	def to_s
-		self.date
+		"check checkin.to_s"
 	end
 end

@@ -6,13 +6,18 @@ TODOs:
 
 -export data
 
+- Green/red percentage per habit
+
+
+Refactor:
+Move if/then code out of view.
+more mobile friendly
 
 
 Bugs:
 -add env variables for heroku
 -		<% if checkinsThisWeek.count == 7 && 1==2 %> <!-- this is broken ToDo: -->
--today.html, line 54: why does to_s work but not getDate (from checkin.rb)
-
+-fix heroku time zone
 
 current project:
 
