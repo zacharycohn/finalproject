@@ -45,7 +45,7 @@
 				<tr>
 					<!-- if active -->
 						<% labelType = "label label-default" %>
-						<% if !(h.checkins.getByDate(checkinDate).empty?) and (h.checkins.getByDate(checkinDate).last.date == time.strftime("%Y-%m-%d")) %>
+						<% if !(h.checkins.empty?) and (h.checkins.last.date.to_s.include? time.strftime("%Y-%m-%d")) %>
 							<%# sets the color of the name label %>
 							<% if h.checkins.last.status == "green" %>
 								<% labelType = "label label-success" %>
@@ -66,7 +66,7 @@
 						<% end %>
 					</td>
 					<!--<td bgcolor="ffff00"> --> <td>
-						<% if !(h.checkins.getByDate(checkinDate).empty?) and h.checkins.last.date.include? time.localtime.strftime("%Y-%m-%d") %>
+						<% if !(h.checkins.empty?) and h.checkins.last.date.to_s.include? time.localtime.strftime("%Y-%m-%d") %>
 							<% last_id = h.checkins.last.id %>
 							<h3><div class="label label-warning"><%= link_to "Yellow", habit_checkin_path(status: "yellow", habit_id: h.id, id: last_id, date: checkinDate), method: 'PATCH' %></span> </h3>
 						<% else %>
@@ -75,7 +75,7 @@
 						<% end %>
 					</td>
 					<!-- <td bgcolor="ff0000"> --> <td>
-						<% if !(h.checkins.getByDate(checkinDate).empty?) and h.checkins.last.date.include? time.localtime.strftime("%Y-%m-%d") %>
+						<% if !(h.checkins.empty?) and h.checkins.last.date.to_s.include? time.localtime.strftime("%Y-%m-%d") %>
 							<% last_id = h.checkins.last.id %>
 							<h3><div class="label label-danger"><%= link_to "Red", habit_checkin_path(status: "red", habit_id: h.id, id: last_id, date: checkinDate), method: 'PATCH' %> </span></h3>
 						<% else %>

@@ -8,6 +8,8 @@ TODOs:
 
 - Green/red percentage per habit
 
+-time zone selector
+
 
 Refactor:
 Move if/then code out of view.
