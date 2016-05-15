@@ -45,8 +45,10 @@
 				<tr>
 					<!-- if active -->
 						<% labelType = "label label-default" %>
-						<% if !(h.checkins.empty?) and (h.checkins.last.date.to_s.include? time.strftime("%Y-%m-%d")) %>
+						<%# if !(h.checkins.empty?) and (h.checkins.last.date.to_s.include? time.strftime("%Y-%m-%d")) %>
+						<% if !(h.checkins.empty?) and h.checkins.getByDate(checkinDate).last.to_s.include? time.strftime("%Y-%m-%d") %>
 							<%# sets the color of the name label %>
+							Date: <%= h.checkins.last.date.to_s %>
 							<% if h.checkins.last.status == "green" %>
 								<% labelType = "label label-success" %>
 							<% elsif h.checkins.last.status == "yellow" %>
