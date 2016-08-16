@@ -72,9 +72,31 @@ class Checkin < ActiveRecord::Base
 
 	end
 
-#	def getDate
-#		self.date
-#	end
+	def self.last_checked_in_today?
+		if self.getByDate(checkinDay).last.to_s.include? Time.now.strftime("%Y-%m-%d")
+			true
+		end
+	end
+
+	def self.get_checkin_status
+		#this breaks if there isn't a full day's worth of checkins
+		labelType = "label label-default"
+
+		begin 
+			if getByDate((Time.now - @checkinDay.days).strftime("%Y-%m-%d")).last.status == "green"
+				labelType = "label label-success"
+			elsif self.getByDate((Time.now - checkinDay.days).strftime("%Y-%m-%d")).last.status == "yellow"
+				labelType = "label label-warning"
+			elsif self.getByDate((Time.now - checkinDay.days).strftime("%Y-%m-%d")).last.status == "red"
+				labelType = "label label-danger"
+			end
+		rescue
+
+		end
+#		getByDate((Time.now - @checkinDay.days).strftime("%Y-%m-%d")).last
+
+		labelType
+	end
 
 	def to_s
 		#"check checkin.to_s"
