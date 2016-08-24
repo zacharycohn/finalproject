@@ -61,30 +61,35 @@
 
 						<% if !(h.checkins.empty?) and h.checkins.last_checked_in_today? %>
 							<td>
+
 							<% last_id = h.checkins.last.id %>
-							<!-- tried to replace the line below with code from the helper. Kept outputting raw html for the < % = link_to statement -->
-							<h3><div class="label label-success"><%= link_to "Green", habit_checkin_path(status: "green", habit_id: h.id, id: last_id, date: checkinDate), method: 'PATCH' %></span> </h3>
+							<h3> <%= setLabel("green") %> <%= link_to "Green", habit_checkin_path(status: "green", habit_id: h.id, id: last_id, date: checkinDate), method: 'PATCH' %></span> </h3>
+
+								<!-- <%= buildPatchButton("green", h.id, last_id, checkinDate).html_safe %> </span></h3> -->
+
+
 						<% else %>
 							<td>
-							<h3><div class="label label-success"><%= link_to "Green", habit_checkins_path(status: "green", habit_id: h.id, date: checkinDate), method: 'POST' %> </span></h3>
+							<h3><%= setLabel("green") %> 
+								<%= link_to "Green", habit_checkins_path(status: "green", habit_id: h.id, date: checkinDate), method: 'POST' %> </span></h3>
 						<% end %>
 					</td>
 					<td>
 						<% if !(h.checkins.empty?) and h.checkins.last_checked_in_today? %>
 							<% last_id = h.checkins.last.id %>
-							<h3><div class="label label-warning"><%= link_to "Yellow", habit_checkin_path(status: "yellow", habit_id: h.id, id: last_id, date: checkinDate), method: 'PATCH' %></span> </h3>
+							<h3><%= setLabel("yellow") %> <%= link_to "Yellow", habit_checkin_path(status: "yellow", habit_id: h.id, id: last_id, date: checkinDate), method: 'PATCH' %></span> </h3>
 						<% else %>
 							<!-- <p>newday!</p> -->
-							<h3><div class="label label-warning"><%= link_to "Yellow", habit_checkins_path(status: "yellow", habit_id: h.id, date: checkinDate), method: 'POST' %></span> </h3>
+							<h3><%= setLabel("yellow") %> <%= link_to "Yellow", habit_checkins_path(status: "yellow", habit_id: h.id, date: checkinDate), method: 'POST' %></span> </h3>
 						<% end %>
 					</td>
 					<td>
 						<% if !(h.checkins.empty?) and h.checkins.last_checked_in_today? %>
 							<% last_id = h.checkins.last.id %>
-							<h3><div class="label label-danger"><%= link_to "Red", habit_checkin_path(status: "red", habit_id: h.id, id: last_id, date: checkinDate), method: 'PATCH' %> </span></h3>
+							<h3><%= setLabel("red") %> <%= link_to "Red", habit_checkin_path(status: "red", habit_id: h.id, id: last_id, date: checkinDate), method: 'PATCH' %> </span></h3>
 						<% else %>
 							<!-- <p>newday!</p> -->
-							<h3><div class="label label-danger"><%= link_to "Red", habit_checkins_path(status: "red", habit_id: h.id, date: checkinDate), method: 'POST' %></span> </h3>
+							<h3><%= setLabel("red") %> <%= link_to "Red", habit_checkins_path(status: "red", habit_id: h.id, date: checkinDate), method: 'POST' %></span> </h3>
 						<% end %>
 					</td>
 				</tr>
