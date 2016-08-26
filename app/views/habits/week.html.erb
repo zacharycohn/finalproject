@@ -4,8 +4,11 @@
 
 <div class="row">
 	<div class="col-md-2">
+		<!-- td><h3><div class="<%#= h.checkins.get_checkin_status %>"><%#= h.name %></span></h3></td -->
+
 		<!-- <button type="button" class="btn btn-lg btn-default">Previous Week</button> -->
 		<%= link_to "Previous Week", previousWeek_checkins_path %>
+		<!-- how do I do? a href="<%#= link_to "Previous Week", previousWeek_checkins_path %>" class="btn btn-info" role="button">Previous Week</a -->
 	</div>
 
 
@@ -14,9 +17,9 @@
 	</div>
 	
 	<div class="col-md-3">
-			<!-- <button type="button" class="btn btn-lg btn-default">Next Week</button> -->
+			<!-- How do I combine HTML and ruby to make this button link to nextWeek_checkins_path?
+			 <button type="button" class="btn btn-lg btn-default">Next Week</button> -->
 			<%= link_to "Next Week", nextWeek_checkins_path %>
-
 	</div>
 </div>
 
@@ -57,8 +60,6 @@
 					<% end %>
 
 				<% else %>
-
-
 					<!-- if at least one checkin is missing -->
 					<% dayArray = [] %>
 					<% checkinArray = [] %>
