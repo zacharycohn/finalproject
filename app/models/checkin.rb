@@ -3,38 +3,45 @@ class Checkin < ActiveRecord::Base
 	#why don't these work?
 	attr_accessor :startDay, :endDay, :checkinDay
 
-	@startDay = 6
-	@endDay = 0
-	@checkinDay = 0
+	def initialize
+    @startDay = 6
+		@endDay = 0
+		@checkinDay = 0
+    super
+  end
+
+	# @startDay = 6
+	# @endDay = 0
+	# @checkinDay = 0
 
 	#probably don't need this
 	def self.query(term)
 		self.where("habit_id LIKE :term OR status LIKE :term OR date LIKE :term", term: "%#{term}%")
 	end
 
-	def self.startDay
-		@startDay
-	end
-
-	def self.startDay=(str)
-		@startDay = str
-	end
-
-	def self.endDay
-		@endDay
-	end
-
-	def self.endDay=(str)
-		@endDay = str
-	end
-
-	def self.checkinDay
-		@checkinDay
-	end
-
-	def self.checkinDay=(str)
-		@checkinDay = str
-	end
+	# def self.startDay
+	# 	@startDay
+	# end
+	#
+	# def self.startDay=(str)
+	# 	@startDay = str
+	# end
+	#
+	# def self.endDay
+	# 	@endDay
+	# end
+	#
+	# def self.endDay=(str)
+	# 	@endDay = str
+	# end
+	#
+	# def self.checkinDay
+	# 	@checkinDay
+	# end
+	#
+	# def self.checkinDay=(str)
+	# 	@checkinDay = str
+	# end
 
 	def self.jumpToToday=(str)
 		@checkinDay = str
@@ -51,14 +58,14 @@ class Checkin < ActiveRecord::Base
 #	end
 
 	def self.get_week
-#		startOfWeek = @startDay + 1 
+#		startOfWeek = @startDay + 1
 		#potential bug here. Will it grab something from one week ago but earlier in the day?
 #		where created_at: (Time.now - startOfWeek.days)..(Time.now - @endDay.days)
 
 
 		weekOfData = Array.new
  		x = 0
- 
+
  		Checkin.endDay.upto(Checkin.startDay) do |d|
  			#refactor
  #			targetDate = (Time.now - d.days).strftime("%B %d %Y")
@@ -82,7 +89,7 @@ class Checkin < ActiveRecord::Base
 		#this breaks if there isn't a full day's worth of checkins
 		labelType = "label label-default"
 
-		begin 
+		begin
 			if getByDate((Time.now - @checkinDay.days).strftime("%Y-%m-%d")).last.status == "green"
 				labelType = "label label-success"
 			elsif self.getByDate((Time.now - checkinDay.days).strftime("%Y-%m-%d")).last.status == "yellow"

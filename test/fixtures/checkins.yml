@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  habit_id: 1
-  status: MyString
-  date: MyString
-  description: MyString
-
-two:
-  habit_id: 1
-  status: MyString
-  date: MyString
-  description: MyString
+# one:
+#   habit_id: 1
+#   status: MyString
+#   date: MyString
+#   description: MyString
+#
+# two:
+#   habit_id: 1
+#   status: MyString
+#   date: MyString
+#   description: MyString

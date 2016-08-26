@@ -19,3 +19,6 @@
 !/log/.keep
 /tmp
 /app/views/habits/backup_week.html.erb
+
+# Ignore .gem directory for cached gems
+.gem
