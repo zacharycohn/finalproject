@@ -46,10 +46,6 @@ class Checkin < ActiveRecord::Base
 		checkinByDate = self.where("date LIKE :term", term: "%#{str}%")
 	end
 
-#	def self.last_week
-#		where created_at: (Time.now - 7.days)..Time.now
-#	end
-
 	def self.get_week
 #		startOfWeek = @startDay + 1 
 		#potential bug here. Will it grab something from one week ago but earlier in the day?
@@ -80,6 +76,7 @@ class Checkin < ActiveRecord::Base
 
 	def self.get_checkin_status
 		#this breaks if there isn't a full day's worth of checkins
+		#THIS IS WHERE THE BUG IS!!! FOUND IT!! now just have to figure out what it is.
 		labelType = "label label-default"
 
 		begin 
@@ -91,7 +88,7 @@ class Checkin < ActiveRecord::Base
 				labelType = "label label-danger"
 			end
 		rescue
-
+			labelType = "wnattt?"
 		end
 #		getByDate((Time.now - @checkinDay.days).strftime("%Y-%m-%d")).last
 

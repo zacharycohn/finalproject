@@ -34,13 +34,13 @@
 			<tr>
 				<!-- ToDo: if active -->
 				<td><h2><div class="label label-default"><%= h.name %></span></h2></td>
-				<% checkinsThisWeek = h.checkins.get_week %> <!-- #.last(7) -->
-				<% checkinsThisWeek.reverse! %>
-				
+				<% checkinsThisWeek = h.checkins.get_week %> 
 
-				<% if checkinsThisWeek.count == 7 && 1==2 %> <!-- Bug: this is broken ToDo: -->
-					<!-- each day has a checkin -->
-					<% checkinsThisWeek.each do |checkinBlock| %>
+				<!-- each day has a checkin -->
+				<% checkinsThisWeek.each do |checkinBlock| %>
+					<% if checkinBlock.nil? == true %>
+						<td bgcolor="0000ff">no data</td>
+					<% else %>
 						<% if checkinBlock.status == "green" %>
 							<td bgcolor="00cc00">
 						<% elsif checkinBlock.status == "yellow" %>
@@ -52,54 +52,7 @@
 						<% end %>
 						</td>
 					<% end %>
-
-				<% else %>
-					<!-- if at least one checkin is missing -->
-					<% dayArray = [] %>
-					<% checkinArray = [] %>
-					<% weekArray = Array.new(7) %>
-
-					<% Checkin.endDay.upto(Checkin.startDay) do |d| %>
-						<% dayArray.push((time - d.days).strftime("%Y-%m-%d")) %>
-					<% end %>
-
-
-					<% checkinsThisWeek.each do |checkinBlock| %>
-						<% found = false %>
-						<% n = 0 %>
-						<% while found == false && n < 7 %>
-							<% begin %>
-								<% if checkinBlock.date.to_s.include? dayArray[n] %>
-									<% weekArray[n] = checkinBlock %>
-									<% found = true %>
-								<% else %>
-									<% n += 1 %>
-								<% end %>
-							<% rescue %>
-								<% n += 1 %>
-							<% end %>
-						<% end %>
-					<% end %>
-
-					<% weekArray.each do |checkinBlock| %>
-						<% if checkinBlock.nil? %>
-							<td bgcolor="0000ff">no data
-						<% else %>
-							<% if checkinBlock.status == "green" %>
-								<td bgcolor="00cc00"><%#= checkinBlock.date %>
-							<% elsif checkinBlock.status == "yellow" %>
-								<td bgcolor="ffff00"><%#= checkinBlock.date %>
-							<% elsif checkinBlock.status == "red" %>
-								<td bgcolor="ff0000"><%#= checkinBlock.date %>
-							<% else %>
-								problem
-							<% end %>
-							</td>
-						<% end %>
-					<% end %>
 				<% end %>
-
-
 			</tr>
 		<% end %>
 	</tbody>

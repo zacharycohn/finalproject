@@ -1,6 +1,7 @@
 <% time = Time.new.localtime %>
 <% time = time - Checkin.checkinDay.days %>
 <% checkinDate = time.strftime("%Y-%m-%d") %>
+Date: <%= checkinDate %>
 
 
 <% if flash[:notice] == "green" %>
@@ -41,20 +42,6 @@
 		<tbody>
 			<% @habits.each do |h| %>
 				<tr>
-					<!-- if active -->
-						<%# labelType = "label label-default" %>
-						<%# if !(h.checkins.empty?) and (h.checkins.last.date.to_s.include? time.strftime("%Y-%m-%d")) %>
-						<%# if !(h.checkins.empty?) and h.checkins.getByDate(checkinDate).last.to_s.include? time.strftime("%Y-%m-%d") %>
-						<!-- sets the color of the name label -->
-						<%# labelType = "label label-default" %>
-						<%# begin %>
-							<%# if h.checkins.get_checkin_status %>
-								<%# labelType = h.checkins.get_checkin_status %>
-							<%# end %>
-						<%# rescue %>
-
-						<%# end %>
-
 					<td><h3><div class="<%= h.checkins.get_checkin_status %>"><%= h.name %></span></h3></td>
 					<td>
 						<% if !(h.checkins.empty?) and h.checkins.last_checked_in_today? %>

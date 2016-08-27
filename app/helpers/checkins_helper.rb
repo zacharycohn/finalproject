@@ -1,16 +1,16 @@
 module CheckinsHelper
 
-	def setLabel(color)
-		labelType = if color == "green"
-			"label label-success"
-		elsif color == "yellow"
-			"label label-warning"
-		elsif color == "red"
-			"label label-danger"
-		end
+	# def setLabel(color)
+	# 	labelType = if color == "green"
+	# 		"label label-success"
+	# 	elsif color == "yellow"
+	# 		"label label-warning"
+	# 	elsif color == "red"
+	# 		"label label-danger"
+	# 	end
 
-		"<div class=\"#{labelType}\">".html_safe
-	end
+	# 	"<div class=\"#{labelType}\">".html_safe
+	# end
 
 	def buildCheckinLink(color, id, last_id, checkinDate, updateMethod)
 

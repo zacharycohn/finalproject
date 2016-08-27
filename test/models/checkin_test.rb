@@ -1,7 +1,8 @@
 require 'test_helper'
 
 class CheckinTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+	test "nothing" do 
+		1
+	end
+
 end
