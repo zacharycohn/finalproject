@@ -13,17 +13,15 @@
 
 <div class="row">
 	<div class="col-md-2">
-		<!-- <button type="button" class="btn btn-lg btn-default">Previous Week</button> -->
-		<h4><%= link_to "Previous Day", previousDay_checkins_path %></h4>
+		<h4><%= link_to "Previous Day", previousDay_checkins_path, class: 'btn btn-large btn-default' %></h4>
 	</div>
 
 	<div class="col-md-2">
-		<h4><%= link_to "Jump to Today", jumpToToday_checkins_path %></h4>
+		<h4><%= link_to "Jump to Today", jumpToToday_checkins_path, class: 'btn btn-large btn-default' %></h4>
 	</div>
 
 	<div class="col-md-2">
-			<!-- <button type="button" class="btn btn-lg btn-default">Next Week</button> -->
-			<h4><%= link_to "Next Day", nextDay_checkins_path %></h4>
+		<h4><%= link_to "Next Day", nextDay_checkins_path, class: 'btn btn-large btn-default' %></h4>
 	</div>
 </div>
 
@@ -48,59 +46,38 @@
 						<%# if !(h.checkins.empty?) and (h.checkins.last.date.to_s.include? time.strftime("%Y-%m-%d")) %>
 						<%# if !(h.checkins.empty?) and h.checkins.getByDate(checkinDate).last.to_s.include? time.strftime("%Y-%m-%d") %>
 						<!-- sets the color of the name label -->
-						<% labelType = "label label-default" %>
-						<% begin %>
-							<% if h.checkins.get_checkin_status %>
-								<% labelType = h.checkins.get_checkin_status %>
-							<% end %>
-						<% rescue %>
+						<%# labelType = "label label-default" %>
+						<%# begin %>
+							<%# if h.checkins.get_checkin_status %>
+								<%# labelType = h.checkins.get_checkin_status %>
+							<%# end %>
+						<%# rescue %>
 
-						<% end %>
+						<%# end %>
 
 					<td><h3><div class="<%= h.checkins.get_checkin_status %>"><%= h.name %></span></h3></td>
 					<td>
 						<% if !(h.checkins.empty?) and h.checkins.last_checked_in_today? %>
 							<% last_id = h.checkins.last.id %>
-							<h3> <%= setLabel("green") %> 
-								 <!-- is this worth turning into a helper? or should I just keep it here? -->
-								 <%= link_to "Green", habit_checkin_path(status: "green", habit_id: h.id, id: last_id, date: checkinDate), method: 'PATCH' %></span> 
-							
-
-								<!--%= buildPatchButton("gree3n", h.id, last_id, checkinDate).html_safe %> </span></h3--> 
-							</h3>
-
+							<%= buildCheckinLink("green", h.id, last_id, checkinDate, "PATCH") %>
 						<% else %>
-							<h3>
-								<%= setLabel("green") %> 
-								<%= link_to "Green", habit_checkins_path(status: "green", habit_id: h.id, date: checkinDate), method: 'POST' %> </span>
-							</h3>
+							<%= buildCheckinLink("green", h.id, nil, checkinDate, "POST") %>
 						<% end %>
 					</td>
 					<td>
 						<% if !(h.checkins.empty?) and h.checkins.last_checked_in_today? %>
 							<% last_id = h.checkins.last.id %>
-							<h3>
-								<%= setLabel("yellow") %> 
-								<%= link_to "Yellow", habit_checkin_path(status: "yellow", habit_id: h.id, id: last_id, date: checkinDate), method: 'PATCH' %></span> 
-							</h3>
+							<%= buildCheckinLink("yellow", h.id, last_id, checkinDate, "PATCH") %>
 						<% else %>
-							<h3>
-								<%= setLabel("yellow") %> <%= link_to "Yellow", habit_checkins_path(status: "yellow", habit_id: h.id, date: checkinDate), method: 'POST' %></span> 
-							</h3>
+							<%= buildCheckinLink("yellow", h.id, nil, checkinDate, "POST") %>
 						<% end %>
 					</td>
 					<td>
 						<% if !(h.checkins.empty?) and h.checkins.last_checked_in_today? %>
 							<% last_id = h.checkins.last.id %>
-							<h3>
-								<%= setLabel("red") %> 
-								<%= link_to "Red", habit_checkin_path(status: "red", habit_id: h.id, id: last_id, date: checkinDate), method: 'PATCH' %> </span>
-							</h3>
+							<%= buildCheckinLink("red", h.id, last_id, checkinDate, "PATCH") %>
 						<% else %>
-							<h3>
-								<%= setLabel("red") %> 
-								<%= link_to "Red", habit_checkins_path(status: "red", habit_id: h.id, date: checkinDate), method: 'POST' %></span> 
-							</h3>
+							<%= buildCheckinLink("red", h.id, nil, checkinDate, "POST") %>
 						<% end %>
 					</td>
 				</tr>

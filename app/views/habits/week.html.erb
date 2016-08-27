@@ -3,23 +3,17 @@
 <div class="col-md-8">
 
 <div class="row">
-	<div class="col-md-2">
+	<div class="col-md-3">
 		<!-- td><h3><div class="<%#= h.checkins.get_checkin_status %>"><%#= h.name %></span></h3></td -->
-
-		<!-- <button type="button" class="btn btn-lg btn-default">Previous Week</button> -->
-		<%= link_to "Previous Week", previousWeek_checkins_path %>
-		<!-- how do I do? a href="<%#= link_to "Previous Week", previousWeek_checkins_path %>" class="btn btn-info" role="button">Previous Week</a -->
+		<h4><%= link_to 'Previous Week', previousWeek_checkins_path, class: 'btn btn-large btn-default' %></h4>
 	</div>
 
-
 	<div class="col-md-3">
-		<h4><%= link_to "Jump to This Week", jumpToThisWeek_checkins_path %></h4>
+		<h4><%= link_to "Current Week", jumpToThisWeek_checkins_path, class: 'btn btn-large btn-default' %></h4>
 	</div>
 	
 	<div class="col-md-3">
-			<!-- How do I combine HTML and ruby to make this button link to nextWeek_checkins_path?
-			 <button type="button" class="btn btn-lg btn-default">Next Week</button> -->
-			<%= link_to "Next Week", nextWeek_checkins_path %>
+		<h4><%= link_to 'Next Week', nextWeek_checkins_path, class: 'btn btn-large btn-default' %></h4>
 	</div>
 </div>
 
