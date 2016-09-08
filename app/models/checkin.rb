@@ -1,13 +1,25 @@
+# == Schema Information
+#
+# Table name: checkins
+#
+#  id          :integer          not null, primary key
+#  habit_id    :integer
+#  status      :string
+#  date        :string
+#  description :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
 class Checkin < ActiveRecord::Base
 	belongs_to :habit
 	#why don't these work?
 	attr_accessor :startDay, :endDay, :checkinDay
 
-	def initialize
-    @startDay = 6
+	after_initialize do
+		@startDay = 6
 		@endDay = 0
 		@checkinDay = 0
-    super
   end
 
 	# @startDay = 6

@@ -26,6 +26,8 @@ class CheckinsController < ApplicationController
 		@checkin.date = params[:date]
 		@checkin.description = ""
 
+byebug
+
 		if @checkin.save
 			flash[:notice] = @checkin.status
 			redirect_to today_habits_path
@@ -42,7 +44,9 @@ class CheckinsController < ApplicationController
 
 		@checkin.date = params[:date]
 		@checkin.description = "pants party"
-		
+
+		byebug
+
 		if @checkin.update(status: checkin_params)
 			flash[:notice] = @checkin.status
 			redirect_to today_habits_path
@@ -52,7 +56,7 @@ class CheckinsController < ApplicationController
 	end
 
 	def nextDay
-		if Checkin.checkinDay > 0 
+		if Checkin.checkinDay > 0
 			Checkin.checkinDay -= 1
 		end
 
@@ -89,7 +93,7 @@ class CheckinsController < ApplicationController
 			Checkin.startDay -= 7
 			Checkin.endDay -= 7
 		end
-		
+
 		redirect_to week_habits_path
 	end
 

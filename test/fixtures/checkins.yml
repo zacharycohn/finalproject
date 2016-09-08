@@ -1,4 +1,15 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# == Schema Information
+#
+# Table name: checkins
+#
+#  id          :integer          not null, primary key
+#  habit_id    :integer
+#  status      :string
+#  date        :string
+#  description :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
 
 # one:
 #   habit_id: 1
