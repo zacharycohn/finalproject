@@ -25,7 +25,6 @@ module CheckinsHelper
 		passBack = "<h3><div class=\"#{labelType}\">".html_safe
 		if last_id.nil?
 			passBack = passBack + link_to(color.capitalize, habit_checkins_path(status: color, habit_id: id, date: checkinDate), method: updateMethod) + "</span></h3>".html_safe
-
 		else
 			passBack = passBack + link_to(color.capitalize, habit_checkin_path(status: color, habit_id: id, id: last_id, date: checkinDate), method: updateMethod) + "</span></h3>".html_safe
 		end
