@@ -13,11 +13,10 @@ class Habit < ActiveRecord::Base
 
 	def last_checked_in_today?(checkinDate)
 		#if this works, rewrite to not be a vuln
-		return if self.checkins.where(date: checkinDate).empty?
-			true
+		if self.checkins.where("date LIKE :term", term: "%#{checkinDate}%").empty?  #(date: checkinDate).empty?
+			return true
 		else
-			false
+			return false
 		end
 	end
-
 end
