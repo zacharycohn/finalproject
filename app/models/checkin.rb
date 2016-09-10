@@ -63,15 +63,7 @@ class Checkin < ActiveRecord::Base
 
 	end
 
-	# def self.last_checked_in_today?
-	# 	if self.getByDate(checkinDay).last.to_s.include? Time.now.strftime("%Y-%m-%d")
-	# 		true
-	# 	end
-	# end
-
 	def self.get_checkin_status
-		#this breaks if there isn't a full day's worth of checkins
-		#THIS IS WHERE THE BUG RABBITHOLE STARTS!!! FOUND IT!! now just have to figure out what it is.
 		labelType = "label label-default"
 
 		begin 
@@ -83,15 +75,13 @@ class Checkin < ActiveRecord::Base
 				labelType = "label label-danger"
 			end
 		rescue
-			#it's triggering the rescue because getByDate is returning an empty object...
-			labelType = $!
+			
 		end
 
 		labelType
 	end
 
 	def to_s
-		#"check checkin.to_s"
 		self.date
 	end
 end

@@ -24,7 +24,7 @@ class CheckinsController < ApplicationController
 
 		@checkin = @habit.checkins.build(status: checkin_params)
 		@checkin.date = params[:date]
-		@checkin.description = "THIS WAS CREATED"
+		@checkin.description = "new"
 
 		if @checkin.save
 			flash[:notice] = @checkin.status
@@ -41,7 +41,7 @@ class CheckinsController < ApplicationController
 		@checkin = @habit.checkins.find(params[:id])
 
 		@checkin.date = params[:date]
-		@checkin.description = "THIS HAS BEEN UPDATED"
+		@checkin.description = "update"
 
 		if @checkin.update(status: checkin_params)
 			flash[:notice] = @checkin.status
