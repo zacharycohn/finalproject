@@ -70,8 +70,6 @@ class Checkin < ActiveRecord::Base
 	# end
 
 	def self.get_checkin_status
-		#this breaks if there isn't a full day's worth of checkins
-		#THIS IS WHERE THE BUG RABBITHOLE STARTS!!! FOUND IT!! now just have to figure out what it is.
 		labelType = "label label-default"
 
 		begin 
@@ -84,7 +82,7 @@ class Checkin < ActiveRecord::Base
 			end
 		rescue
 			#it's triggering the rescue because getByDate is returning an empty object...
-			labelType = $!
+			#labelType = $!
 		end
 
 		labelType
