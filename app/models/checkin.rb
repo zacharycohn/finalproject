@@ -75,7 +75,8 @@ class Checkin < ActiveRecord::Base
 				labelType = "label label-danger"
 			end
 		rescue
-			
+			#it's triggering the rescue because getByDate is returning an empty object...
+			#labelType = $!
 		end
 
 		labelType

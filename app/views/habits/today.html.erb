@@ -44,29 +44,27 @@ Date: <%= checkinDate %>
 				<tr>
 					<td><h3><div class="<%= h.checkins.get_checkin_status %>"><%= h.name %></span></h3></td>
 					<td>
-						<% if !(h.checkins.empty?) and h.last_checked_in_today?(checkinDate) %>
-							<!-- maybe last_id is part of the problem? It's updating the most recent, rather than the one of the day i'm on-->
-
+						<% if h.post_or_patch(checkinDate) == "post" #!(h.checkins.empty?) and h.checked_in_on?(checkinDate) %>
+							<%= buildCheckinLink("green", h.id, nil, checkinDate, "POST") %>
+						<% else %>
 							<% last_id = h.checkins.last.id %>
 							<%= buildCheckinLink("green", h.id, last_id, checkinDate, "PATCH") %>
-						<% else %>
-							<%= buildCheckinLink("green", h.id, nil, checkinDate, "POST") %>
 						<% end %>
 					</td>
 					<td>
-						<% if !(h.checkins.empty?) and h.last_checked_in_today?(checkinDate) %>
-							<% last_id = h.checkins.last.id %>
-							<%= buildCheckinLink("yellow", h.id, last_id, checkinDate, "PATCH") %>
-						<% else %>
+						<% if h.post_or_patch(checkinDate) == "post" #!(h.checkins.empty?) and h.checked_in_on?(checkinDate) %>
 							<%= buildCheckinLink("yellow", h.id, nil, checkinDate, "POST") %>
+						<% else %>
+							<% last_id = h.checkins.last.id %>
+							<%= buildCheckinLink("yellow", h.id, last_id, checkinDate, "PATCH") %>							
 						<% end %>
 					</td>
 					<td>
-						<% if !(h.checkins.empty?) and h.last_checked_in_today?(checkinDate) %>
+						<% if h.post_or_patch(checkinDate) == "post" #!(h.checkins.empty?) and h.checked_in_on?(checkinDate) %>
+							<%= buildCheckinLink("red", h.id, nil, checkinDate, "POST") %>
+						<% else %>
 							<% last_id = h.checkins.last.id %>
 							<%= buildCheckinLink("red", h.id, last_id, checkinDate, "PATCH") %>
-						<% else %>
-							<%= buildCheckinLink("red", h.id, nil, checkinDate, "POST") %>
 						<% end %>
 					</td>
 				</tr>
