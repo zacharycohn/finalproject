@@ -7,14 +7,14 @@ class Habit < ActiveRecord::Base
 		where active: "true"
 	end
 
-# 	def checked_in_on?(checkinDate)
-# #		if self.checkins.where(date: checkinDate).empty?
-# 		if self.checkins.where("date LIKE :term", term: "%#{checkinDate}%").empty?	
-# 			return true
-# 		else
-# 			return false
-# 		end
-# 	end
+	def check_in_ID(checkinDate)
+#		if self.checkins.where(date: checkinDate).empty?
+		return self.checkins.where("date LIKE :term", term: "%#{checkinDate}%").last.id
+		# 	return true
+		# else
+		# 	return false
+		# end
+	end
 
 	def post_or_patch(checkinDate)
 		#fix this vuln

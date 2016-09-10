@@ -1,8 +1,6 @@
 <% time = Time.new.localtime %>
 <% time = time - Checkin.checkinDay.days %>
 <% checkinDate = time.strftime("%Y-%m-%d") %>
-Date: <%= checkinDate %>
-
 
 <% if flash[:notice] == "green" %>
 	<div class="alert alert-success" role="alert"><%= "Nice job! Keep it up." %></div>
@@ -47,7 +45,7 @@ Date: <%= checkinDate %>
 						<% if h.post_or_patch(checkinDate) == "post" #!(h.checkins.empty?) and h.checked_in_on?(checkinDate) %>
 							<%= buildCheckinLink("green", h.id, nil, checkinDate, "POST") %>
 						<% else %>
-							<% last_id = h.checkins.last.id %>
+							<% last_id = h.check_in_ID(checkinDate) %>
 							<%= buildCheckinLink("green", h.id, last_id, checkinDate, "PATCH") %>
 						<% end %>
 					</td>
@@ -55,7 +53,7 @@ Date: <%= checkinDate %>
 						<% if h.post_or_patch(checkinDate) == "post" #!(h.checkins.empty?) and h.checked_in_on?(checkinDate) %>
 							<%= buildCheckinLink("yellow", h.id, nil, checkinDate, "POST") %>
 						<% else %>
-							<% last_id = h.checkins.last.id %>
+							<% last_id = h.check_in_ID(checkinDate) %>
 							<%= buildCheckinLink("yellow", h.id, last_id, checkinDate, "PATCH") %>							
 						<% end %>
 					</td>
@@ -63,7 +61,7 @@ Date: <%= checkinDate %>
 						<% if h.post_or_patch(checkinDate) == "post" #!(h.checkins.empty?) and h.checked_in_on?(checkinDate) %>
 							<%= buildCheckinLink("red", h.id, nil, checkinDate, "POST") %>
 						<% else %>
-							<% last_id = h.checkins.last.id %>
+							<% last_id = h.check_in_ID(checkinDate) %>
 							<%= buildCheckinLink("red", h.id, last_id, checkinDate, "PATCH") %>
 						<% end %>
 					</td>
