@@ -12,8 +12,8 @@ class Habit < ActiveRecord::Base
 	end
 
 	def post_or_patch?(checkinDate)
-		#fix this vuln
-		if !(self.checkins.empty?) and !(self.checkins.where(date: checkinDate).empty?) #self.checkins.where("date LIKE :term", term: "%#{checkinDate}%").empty? # or 
+#		if !(self.checkins.empty?) and !(self.checkins.where(date: checkinDate).empty?)
+		if !(self.checkins.empty?) and !(self.checkins.where("date LIKE :term", term: "%#{checkinDate}%").empty?
 			#I want to patch
 			return true 
 		else
