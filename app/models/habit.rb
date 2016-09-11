@@ -13,7 +13,7 @@ class Habit < ActiveRecord::Base
 
 	def post_or_patch?(checkinDate)
 #		if !(self.checkins.empty?) and !(self.checkins.where(date: checkinDate).empty?)
-		if !(self.checkins.empty?) and !(self.checkins.where("date LIKE :term", term: "%#{checkinDate}%").empty?
+		if !(self.checkins.empty?) and !(self.checkins.where("date LIKE :term", term: "%#{checkinDate}%").empty?)
 			#I want to patch
 			return true 
 		else
