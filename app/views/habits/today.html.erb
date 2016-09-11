@@ -2,13 +2,7 @@
 <% time = time - Checkin.checkinDay.days %>
 <% checkinDate = time.strftime("%Y-%m-%d") %>
 
-<% if flash[:notice] == "green" %>
-	<div class="alert alert-success" role="alert"><%= "Nice job! Keep it up." %></div>
-<% elsif flash[:notice] == "yellow" %>
-	<div class="alert alert-warning" role="alert"><%= "Ehh.. is that the best you can do?" %></div>
-<% elsif flash[:notice] == "red" %>
-	<div class="alert alert-danger" role="alert"><%= "Oh come on. You gonna give up like that?" %></div>
-<% end %>
+<%= flashNotice(flash[:notice]) %>
 
 <div class="row">
 	<div class="col-md-2">
@@ -41,30 +35,9 @@
 			<% @habits.each do |h| %>
 				<tr>
 					<td><h3><div class="<%= h.checkins.get_checkin_status %>"><%= h.name %></span></h3></td>
-					<td>
-						<% if h.post_or_patch(checkinDate) == "post" #!(h.checkins.empty?) and h.checked_in_on?(checkinDate) %>
-							<%= buildCheckinLink("green", h.id, nil, checkinDate, "POST") %>
-						<% else %>
-							<% last_id = h.check_in_ID(checkinDate) %>
-							<%= buildCheckinLink("green", h.id, last_id, checkinDate, "PATCH") %>
-						<% end %>
-					</td>
-					<td>
-						<% if h.post_or_patch(checkinDate) == "post" #!(h.checkins.empty?) and h.checked_in_on?(checkinDate) %>
-							<%= buildCheckinLink("yellow", h.id, nil, checkinDate, "POST") %>
-						<% else %>
-							<% last_id = h.check_in_ID(checkinDate) %>
-							<%= buildCheckinLink("yellow", h.id, last_id, checkinDate, "PATCH") %>							
-						<% end %>
-					</td>
-					<td>
-						<% if h.post_or_patch(checkinDate) == "post" #!(h.checkins.empty?) and h.checked_in_on?(checkinDate) %>
-							<%= buildCheckinLink("red", h.id, nil, checkinDate, "POST") %>
-						<% else %>
-							<% last_id = h.check_in_ID(checkinDate) %>
-							<%= buildCheckinLink("red", h.id, last_id, checkinDate, "PATCH") %>
-						<% end %>
-					</td>
+					<td><%= buildCheckinLabel(h, "green", checkinDate) %></td>
+					<td><%= buildCheckinLabel(h, "yellow", checkinDate) %></td>
+					<td><%= buildCheckinLabel(h, "red", checkinDate) %></td>
 				</tr>
 			<% end %>
 		</tbody>

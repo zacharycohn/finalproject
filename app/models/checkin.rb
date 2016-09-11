@@ -7,10 +7,10 @@ class Checkin < ActiveRecord::Base
 	@endDay = 0
 	@checkinDay = 0
 
-	#probably don't need this
-	def self.query(term)
-		self.where("habit_id LIKE :term OR status LIKE :term OR date LIKE :term", term: "%#{term}%")
-	end
+	# #probably don't need this
+	# def self.query(term)
+	# 	self.where("habit_id LIKE :term OR status LIKE :term OR date LIKE :term", term: "%#{term}%")
+	# end
 
 	def self.startDay
 		@startDay
@@ -46,7 +46,7 @@ class Checkin < ActiveRecord::Base
 		checkinByDate = self.where("date LIKE :term", term: "%#{str}%")
 	end
 
-	def self.get_week
+	def self.get_week #this should move to habits.rb
 		#potential bug here. Will it grab something from one week ago but earlier in the day?
 
 		weekOfData = Array.new

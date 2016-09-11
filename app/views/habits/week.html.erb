@@ -4,7 +4,6 @@
 
 <div class="row">
 	<div class="col-md-3">
-		<!-- td><h3><div class="<%#= h.checkins.get_checkin_status %>"><%#= h.name %></span></h3></td -->
 		<h4><%= link_to 'Previous Week', previousWeek_checkins_path, class: 'btn btn-large btn-default' %></h4>
 	</div>
 
@@ -34,24 +33,9 @@
 			<tr>
 				<!-- ToDo: if active -->
 				<td><h2><div class="label label-default"><%= h.name %></span></h2></td>
-				<% checkinsThisWeek = h.checkins.get_week %> 
-
-				<!-- each day has a checkin -->
+				<% checkinsThisWeek = h.checkins.get_week %> <!-- move this from checkins to habits -->
 				<% checkinsThisWeek.each do |checkinBlock| %>
-					<% if checkinBlock.nil? == true %>
-						<td bgcolor="0000ff">no data</td>
-					<% else %>
-						<% if checkinBlock.status == "green" %>
-							<td bgcolor="00cc00">
-						<% elsif checkinBlock.status == "yellow" %>
-							<td bgcolor="ffff00">
-						<% elsif checkinBlock.status == "red" %>
-							<td bgcolor="ff0000">
-						<% else %>
-							problem
-						<% end %>
-						</td>
-					<% end %>
+					<td bgcolor="<%= colorPicker(checkinBlock) %>"></td>
 				<% end %>
 			</tr>
 		<% end %>
