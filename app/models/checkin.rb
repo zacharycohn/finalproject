@@ -55,6 +55,7 @@ class Checkin < ActiveRecord::Base
 		checkinByDate = self.where("date LIKE :term", term: "%#{str}%").last
 	end
 
+#covered by tests
 	def self.get_week
 		weekOfData = Array.new
  		x = 0
