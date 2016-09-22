@@ -7,11 +7,6 @@ class Checkin < ActiveRecord::Base
 	@endDay = 0
 	@checkinDay = 0
 
-	# #probably don't need this
-	# def self.query(term)
-	# 	self.where("habit_id LIKE :term OR status LIKE :term OR date LIKE :term", term: "%#{term}%")
-	# end
-
 	def self.startDay
 		@startDay
 	end
@@ -43,18 +38,14 @@ class Checkin < ActiveRecord::Base
 	def self.getByDate(str)
 		checkinByDate = Array.new
 
-		checkinByDate = self.where("date LIKE :term", term: "%#{str}%")
+		checkinByDate = self.where("date LIKE :term", term: "%#{str}%").last
 	end
 
-	def self.get_week #this should move to habits.rb
-		#potential bug here. Will it grab something from one week ago but earlier in the day?
-
+	def self.get_week
 		weekOfData = Array.new
  		x = 0
  
  		Checkin.endDay.upto(Checkin.startDay) do |d|
- 			#refactor
- #			targetDate = (Time.now - d.days).strftime("%B %d %Y")
  			targetDate = (Time.now.localtime - d.days).strftime("%Y-%m-%d")
  			weekOfData[x] = self.where("date LIKE :term", term: "%#{targetDate}%").last
  			x += 1
@@ -63,20 +54,20 @@ class Checkin < ActiveRecord::Base
 
 	end
 
+	#covered by tests
 	def self.get_checkin_status
 		labelType = "label label-default"
 
 		begin 
-			if getByDate((Time.now - @checkinDay.days).strftime("%Y-%m-%d")).last.status == "green"
+			if getByDate((Time.now - @checkinDay.days).strftime("%Y-%m-%d")).status == "green"
 				labelType = "label label-success"
-			elsif self.getByDate((Time.now - checkinDay.days).strftime("%Y-%m-%d")).last.status == "yellow"
+			elsif getByDate((Time.now - checkinDay.days).strftime("%Y-%m-%d")).status == "yellow"
 				labelType = "label label-warning"
-			elsif self.getByDate((Time.now - checkinDay.days).strftime("%Y-%m-%d")).last.status == "red"
+			elsif getByDate((Time.now - checkinDay.days).strftime("%Y-%m-%d")).status == "red"
 				labelType = "label label-danger"
 			end
 		rescue
-			#it's triggering the rescue because getByDate is returning an empty object...
-			#labelType = $!
+			#use default label type
 		end
 
 		labelType

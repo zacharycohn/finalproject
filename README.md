@@ -18,8 +18,6 @@ more mobile friendly
 
 Bugs:
 -add env variables for heroku
--		<% if checkinsThisWeek.count == 7 && 1==2 %> <!-- this is broken ToDo: -->
-- crazy label bug. I think it has to do with checkinDate, defined at the top of today.html.erb
 
 current project:
 

@@ -21,11 +21,10 @@ module CheckinsHelper
 	end
 
 	def colorPicker(checkinBlock)
-
 		if checkinBlock.nil? == true
 				color = "0000ff"
 		else
-			if checkinBlock.status == "green"
+	   	if checkinBlock.status == "green"
 				color = "00cc00"
 			elsif checkinBlock.status == "yellow"
 				color= "ffff00"
@@ -38,7 +37,7 @@ module CheckinsHelper
 
 	def buildCheckinLabel(habit, color, checkinDate)
 		if habit.post_or_patch?(checkinDate)
-			last_id = habit.check_in_ID(checkinDate)
+			last_id = habit.checkin_ID(checkinDate)
 			link = buildLink(color, habit.id, last_id, checkinDate, "PATCH")
 		else
 			link = buildLink(color, habit.id, nil, checkinDate, "POST")

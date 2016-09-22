@@ -7,8 +7,6 @@ class CheckinsController < ApplicationController
 			@checkin = Checkin.where(status: params[:status])
 		elsif params.key? :date
 			@checkin = Checkin.where(date: params[:date])
-	#	elsif params.key? :date and :status
-			#probably will have to do this at some point
 		else #all checkins
 			@checkin = @habit.checkins
 		end
