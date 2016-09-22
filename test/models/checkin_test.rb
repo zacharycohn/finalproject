@@ -10,21 +10,21 @@ class CheckinTest < ActiveSupport::TestCase
 	test "#get_checkin_status success" do
 		create_old_checkins("green")
 
-		status = Checkin.get_checkin_status
+		status = Checkin.get_checkin_status(Time.now)
 		assert_equal "label label-success", status
 	end
 
 	test "#get_checkin_status warning" do
 		create_old_checkins("yellow")
 
-		status = Checkin.get_checkin_status
+		status = Checkin.get_checkin_status(Time.now)
 		assert_equal "label label-warning", status
 	end
 
 	test "#get_checkin_status danger" do
 		create_old_checkins("red")
 
-		status = Checkin.get_checkin_status
+		status = Checkin.get_checkin_status(Time.now)
 		assert_equal "label label-danger", status
 	end
 

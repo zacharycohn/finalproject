@@ -32,6 +32,5 @@ private
 
 		@checkin1 = Checkin.create(habit: @habit1, status: "green", date: Time.now)
 		@checkin2 = Checkin.create(habit: @habit1, status: "yellow", date: Time.now)
-
 	end
 end

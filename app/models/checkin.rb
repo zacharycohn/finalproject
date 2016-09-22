@@ -7,6 +7,18 @@ class Checkin < ActiveRecord::Base
 	@endDay = 0
 	@checkinDay = 0
 
+	@checkinDate = Time.now
+
+
+	def self.checkinDate
+		@checkinDate
+	end
+
+	def self.checkinDate=(str)
+		@checkinDate = str
+	end
+
+	###much of the stuff below here will be deletable###
 	def self.startDay
 		@startDay
 	end
@@ -31,8 +43,10 @@ class Checkin < ActiveRecord::Base
 		@checkinDay = str
 	end
 
+	#########
+
 	def self.jumpToToday=(str)
-		@checkinDay = str
+		@checkinDate = str
 	end
 
 	def self.getByDate(str)
@@ -50,20 +64,26 @@ class Checkin < ActiveRecord::Base
  			weekOfData[x] = self.where("date LIKE :term", term: "%#{targetDate}%").last
  			x += 1
  		end
+# 		byebug
+
+ 		# 0.upto(6) do |d|
+ 		# 	targetDate = (@checkinDate - d.days).strftime("%Y-%m-%d")
+ 		# 	weekOfData[x] = self.where("date LIKE :term", term: "%#{targetDate}%").last
+ 		# end
  		weekOfData
 
 	end
 
 	#covered by tests
-	def self.get_checkin_status
+	def self.get_checkin_status(checkinDate)
 		labelType = "label label-default"
 
 		begin 
-			if getByDate((Time.now - @checkinDay.days).strftime("%Y-%m-%d")).status == "green"
+			if getByDate(checkinDate).status == "green"
 				labelType = "label label-success"
-			elsif getByDate((Time.now - checkinDay.days).strftime("%Y-%m-%d")).status == "yellow"
+			elsif getByDate(checkinDate).status == "yellow"
 				labelType = "label label-warning"
-			elsif getByDate((Time.now - checkinDay.days).strftime("%Y-%m-%d")).status == "red"
+			elsif getByDate(checkinDate).status == "red"
 				labelType = "label label-danger"
 			end
 		rescue

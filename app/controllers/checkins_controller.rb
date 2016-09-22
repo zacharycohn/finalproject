@@ -1,5 +1,4 @@
 class CheckinsController < ApplicationController
-	#before_filter :find_habit
 
 	def index
 		find_habit
@@ -49,21 +48,23 @@ class CheckinsController < ApplicationController
 	end
 
 	def nextDay
-		if Checkin.checkinDay > 0 
-			Checkin.checkinDay -= 1
+		byebug
+		if Checkin.checkinDate.strftime("%Y-%m-%d") < Time.now.strftime("%Y-%m-%d")
+			Checkin.checkinDate += 1.days
 		end
 
 		redirect_to today_habits_path
 	end
 
 	def previousDay
-		Checkin.checkinDay += 1
+		Checkin.checkinDate -= 1.days
 
 		redirect_to today_habits_path
 	end
 
 	def jumpToToday
-		Checkin.checkinDay = 0
+		Checkin.checkinDate = Time.now
+
 		redirect_to today_habits_path
 	end
 
@@ -90,7 +91,6 @@ class CheckinsController < ApplicationController
 		redirect_to week_habits_path
 	end
 
-
 private
 	def checkin_params
 		params.require(:status)
@@ -99,4 +99,5 @@ private
 	def find_habit
 		@habit = Habit.find(params[:habit_id])
 	end
+
 end

@@ -1,7 +1,4 @@
-<% time = Time.new.localtime %>
-<% time = time - Checkin.checkinDay.days %>
-<% checkinDate = time.strftime("%Y-%m-%d") %>
-
+<% checkinDate = Checkin.checkinDate %>
 <%= flashNotice(flash[:notice]) %>
 
 <div class="col-md-8">
@@ -20,7 +17,7 @@
 	</div>
 </div>
 
-<h1>Your habits for: <%= time.strftime("%a, %B %d") %> </h1>
+<h1>Your habits for: <%= checkinDate.strftime("%a, %B %d") %> </h1>
 
 
 <div class="col-md-4">
@@ -36,7 +33,7 @@
 		<tbody>
 			<% @habits.each do |h| %>
 				<tr>
-					<td><h3><div class="<%= h.checkins.get_checkin_status %>"><%= h.name %></span></h3></td>
+					<td><h3><div class="<%= h.checkins.get_checkin_status(checkinDate.strftime("%Y-%m-%d")) %>"><%= h.name %></span></h3></td>
 					<td><%= buildCheckinLabel(h, "green", checkinDate) %></td>
 					<td><%= buildCheckinLabel(h, "yellow", checkinDate) %></td>
 					<td><%= buildCheckinLabel(h, "red", checkinDate) %></td>
