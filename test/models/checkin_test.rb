@@ -40,12 +40,12 @@ class CheckinTest < ActiveSupport::TestCase
 
 	end
 
+	test "#getByDate" do
+		create_dupe_checkins
 
- 		# Checkin.endDay.upto(Checkin.startDay) do |d|
- 		# 	targetDate = (Time.now.localtime - d.days).strftime("%Y-%m-%d")
- 		# 	weekOfData[x] = self.where("date LIKE :term", term: "%#{targetDate}%").last
- 		# 	x += 1
- 		# end
+		assert_equal @checkin11, @habit3.checkins.getByDate(Time.now - 4.days)
+
+	end
 
 
 private
@@ -64,6 +64,15 @@ private
 		@checkin7 = Checkin.create(habit: @habit1, status: "yellow", date: Time.now - 5.days)
 		@checkin8 = Checkin.create(habit: @habit1, status: "red", date: Time.now - 6.days)
 		@checkin9 = Checkin.create(habit: @habit1, status: "green", date: Time.now - 7.days)
+	end
+
+	def create_dupe_checkins
+		@user2 = User.create()
+
+		@habit3 = Habit.create(name: "Pants", user: @user2)
+
+		@checkin10 = Checkin.create(habit: @habit3, status: "green", date: Time.now - 4.days)
+		@checkin11 = Checkin.create(habit: @habit3, status: "red", date: Time.now - 4.days)
 
 	end
 

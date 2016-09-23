@@ -49,7 +49,7 @@ class Checkin < ActiveRecord::Base
 
 	#########
 
-
+#covered by tests
 	def self.getByDate(str)
 		checkinByDate = Array.new
 
@@ -92,4 +92,5 @@ class Checkin < ActiveRecord::Base
 	def to_s
 		self.date
 	end
+
 end

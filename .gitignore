@@ -21,4 +21,4 @@
 /app/views/habits/backup_week.html.erb
 
 #Ignore .byebug_history
-.byebug_history
+/.byebug_history
