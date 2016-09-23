@@ -48,7 +48,6 @@ class CheckinsController < ApplicationController
 	end
 
 	def nextDay
-		byebug
 		if Checkin.checkinDate.strftime("%Y-%m-%d") < Time.now.strftime("%Y-%m-%d")
 			Checkin.checkinDate += 1.days
 		end
@@ -69,24 +68,23 @@ class CheckinsController < ApplicationController
 	end
 
 	def previousWeek
-		Checkin.startDay += 7
-		Checkin.endDay += 7
+		Checkin.checkinDate -= 7.days
 
 		redirect_to week_habits_path
 	end
 
 	def jumpToThisWeek
-		Checkin.startDay = 6
-		Checkin.endDay = 0
-
+		Checkin.checkinDate = Time.now
+		
 		redirect_to week_habits_path
 	end
 
 	def nextWeek
-		if Checkin.endDay >= 7
-			Checkin.startDay -= 7
-			Checkin.endDay -= 7
+		if Checkin.checkinDate.strftime("%Y-%m-%d") < Time.now.strftime("%Y-%m-%d")
+			Checkin.checkinDate += 7.days
 		end
+
+
 		
 		redirect_to week_habits_path
 	end

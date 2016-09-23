@@ -1,11 +1,11 @@
 class Checkin < ActiveRecord::Base
 	belongs_to :habit
 	#why don't these work?
-	attr_accessor :startDay, :endDay, :checkinDay
+#	attr_accessor :startDay, :endDay, :checkinDay
 
-	@startDay = 6
-	@endDay = 0
-	@checkinDay = 0
+	# @startDay = 6
+	# @endDay = 0
+	# @checkinDay = 0
 
 	@checkinDate = Time.now
 
@@ -19,35 +19,36 @@ class Checkin < ActiveRecord::Base
 	end
 
 	###much of the stuff below here will be deletable###
-	def self.startDay
-		@startDay
-	end
+	# def self.startDay
+	# 	@startDay
+	# end
 
-	def self.startDay=(str)
-		@startDay = str
-	end
+	# def self.startDay=(str)
+	# 	@startDay = str
+	# end
 
-	def self.endDay
-		@endDay
-	end
+	# def self.endDay
+	# 	@endDay
+	# end
 
-	def self.endDay=(str)
-		@endDay = str
-	end
+	# def self.endDay=(str)
+	# 	@endDay = str
+	# end
 
-	def self.checkinDay
-		@checkinDay
-	end
+	# def self.checkinDay
+	# 	@checkinDay
+	# end
 
-	def self.checkinDay=(str)
-		@checkinDay = str
-	end
+	# def self.checkinDay=(str)
+	# 	@checkinDay = str
+	# end
+
+	# def self.jumpToToday=(str)
+	# 	@checkinDate = str
+	# end
 
 	#########
 
-	def self.jumpToToday=(str)
-		@checkinDate = str
-	end
 
 	def self.getByDate(str)
 		checkinByDate = Array.new
@@ -59,18 +60,12 @@ class Checkin < ActiveRecord::Base
 	def self.get_week
 		weekOfData = Array.new
  		x = 0
- 
- 		Checkin.endDay.upto(Checkin.startDay) do |d|
- 			targetDate = (Time.now.localtime - d.days).strftime("%Y-%m-%d")
+
+ 		0.upto(6) do |d|
+ 			targetDate = (@checkinDate - d.days).strftime("%Y-%m-%d")
  			weekOfData[x] = self.where("date LIKE :term", term: "%#{targetDate}%").last
  			x += 1
  		end
-# 		byebug
-
- 		# 0.upto(6) do |d|
- 		# 	targetDate = (@checkinDate - d.days).strftime("%Y-%m-%d")
- 		# 	weekOfData[x] = self.where("date LIKE :term", term: "%#{targetDate}%").last
- 		# end
  		weekOfData
 
 	end
@@ -88,7 +83,7 @@ class Checkin < ActiveRecord::Base
 				labelType = "label label-danger"
 			end
 		rescue
-			#use default label type
+			#uses default label type
 		end
 
 		labelType
