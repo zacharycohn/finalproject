@@ -3,7 +3,7 @@
 
 <div class="col-md-12">
 
-	<div class="row"> <!-- can lauryl help me with this? -->
+	<div class="row">
 		<div class="col-xs-4">
 			<h4><%= link_to "Previous Day", previousDay_checkins_path, class: 'btn btn-large btn-default' %></h4>
 		</div>
@@ -20,7 +20,6 @@
 	<h1>Your habits for: <%= checkinDate.strftime("%a, %B %d") %> </h1>
 
 
-	<div class="col-xs-12">
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -43,5 +42,4 @@
 		</table>
 
 		<h3><p><%= link_to "Add a new habit", new_habit_path %></p></h3>
-	</div>
 </div> 

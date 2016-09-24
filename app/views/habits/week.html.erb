@@ -1,16 +1,16 @@
 <%# time = Time.new.localtime %>
 <% time = Checkin.checkinDate %>
-
+<div class="col-md-12">
 	<div class="row">
-		<div class="col-md-3">
+		<div class="col-xs-4">
 			<h4><%= link_to 'Previous Week', previousWeek_checkins_path, class: 'btn btn-large btn-default' %></h4>
 		</div>
 
-		<div class="col-md-3">
+		<div class="col-xs-4">
 			<h4><%= link_to "Current Week", jumpToThisWeek_checkins_path, class: 'btn btn-large btn-default' %></h4>
 		</div>
 		
-		<div class="col-md-3">
+		<div class="col-xs-4">
 			<h4><%= link_to 'Next Week', nextWeek_checkins_path, class: 'btn btn-large btn-default' %></h4>
 		</div>
 	</div>
@@ -22,7 +22,6 @@
 		<thead>
 			<tr>
 				<th>Habit</th>
-				<%# Checkin.endDay.upto(Checkin.startDay) do |d| %>
 				<% 0.upto(6) do |d| %>
 					<th><%= (time - d.days).strftime("%a - %d") %></th>
 				<% end %>
@@ -33,8 +32,6 @@
 				<tr>
 					<!-- ToDo: if active -->
 					<td><h2><div class="label label-default"><%= h.name %></span></h2></td>
-					<%# checkinsThisWeek = h.checkins.get_week %> <!-- move this from checkins to habits -->
-					<%# checkinsThisWeek.each do |checkinBlock| %>
 					<% h.checkins.get_week.each do | checkinBlock | %>
 						<td bgcolor="<%= colorPicker(checkinBlock) %>"></td>
 					<% end %>
@@ -44,4 +41,4 @@
 	</table>
 
 	<h3><p><%= link_to "Add a new habit", new_habit_path %></p></h3>
-
+</div>
