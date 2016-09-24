@@ -1,5 +1,6 @@
 Things to work with Clint on: 
 -Controller tests? 
+-CSS on today and week view
 
 
 TODOs:

@@ -1,18 +1,18 @@
 <% checkinDate = Checkin.checkinDate %>
 <%= flashNotice(flash[:notice]) %>
 
-<div class="col-md-8">
+<div class="col-md-12">
 
 	<div class="row"> <!-- can lauryl help me with this? -->
-		<div class="col-md-3">
+		<div class="col-xs-4">
 			<h4><%= link_to "Previous Day", previousDay_checkins_path, class: 'btn btn-large btn-default' %></h4>
 		</div>
 
-		<div class="col-md-3">
+		<div class="col-xs-4">
 			<h4><%= link_to "Jump to Today", jumpToToday_checkins_path, class: 'btn btn-large btn-default' %></h4>
 		</div>
 
-		<div class="col-md-3">
+		<div class="col-xs-4">
 			<h4><%= link_to "Next Day", nextDay_checkins_path, class: 'btn btn-large btn-default' %></h4>
 		</div>
 	</div>
@@ -20,7 +20,7 @@
 	<h1>Your habits for: <%= checkinDate.strftime("%a, %B %d") %> </h1>
 
 
-	<div class="col-md-4">
+	<div class="col-xs-12">
 		<table class="table table-striped">
 			<thead>
 				<tr>
