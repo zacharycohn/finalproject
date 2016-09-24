@@ -15,15 +15,16 @@
 		</div>
 	</div>
 
-	<h2>Week starting <%= "#{(time - Checkin.startDay.days).strftime("%B %d")}" %></h2>
+	<h2>Week starting <%= time.strftime("%B %d") %></h2>
 
 
 	<table class="table table-bordered">
 		<thead>
 			<tr>
 				<th>Habit</th>
-				<% Checkin.endDay.upto(Checkin.startDay) do |d| %>
-					<th><%= "#{(time - d.days).strftime("%a - %d")}" %></th>
+				<%# Checkin.endDay.upto(Checkin.startDay) do |d| %>
+				<% 0.upto(6) do |d| %>
+					<th><%= (time - d.days).strftime("%a - %d") %></th>
 				<% end %>
 			</tr>
 		</thead>

@@ -1,9 +1,6 @@
 require 'test_helper'
 
 class HabitTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
 
   test "#post_or_patch?" do
   	create_old_checkins

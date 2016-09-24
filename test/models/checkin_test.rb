@@ -1,11 +1,6 @@
 require 'test_helper'
 
 class CheckinTest < ActiveSupport::TestCase
-
-	# def setup
-	# 	@user = User.create()
-	# 	@habit = Habit.create(user: @user)
-	# end
 	
 	test "#get_checkin_status success" do
 		create_old_checkins("green")
@@ -47,6 +42,16 @@ class CheckinTest < ActiveSupport::TestCase
 
 	end
 
+# 	test "#buildCheckinLabel(habit, color, checkinDate)" do
+# 		create_old_checkins("red")
+
+# #		last_id = @habit1.checkin_ID(Time.now.strftime("%Y-%m-%d"))
+# 		#realLink = buildLink("red", @habit1.id, last_id, Time.now.strftime("%Y-%m-%d"), "PATCH")
+# 		realLink = buildCheckinLabel(@habit1, "red", (Time.now.strftime("%Y-%m-%d")))
+# 		testLink = "<h3><div class=\"label label-danger\"><a rel=\"nofollow\" data-method=\"PATCH\" href=\"/habits/1/checkins/1?date=2016-09-24&amp;status=red\">Red</a></span></h3>"
+
+# 		assert_equal testLink, realLink
+# 	end
 
 private
 	def create_old_checkins(status)
@@ -55,7 +60,7 @@ private
 		@habit1 = Habit.create(name: "Put pants on", user: @user)
 		@habit2 = Habit.create(name: "Put shirt on", user: @user)
 
-		@checkin1 = Checkin.create(habit: @habit1, status: status, date: Time.now)
+		@checkin1 = Checkin.create(habit: @habit1, status: status, date: Time.now.strftime("%Y-%m-%d"))
 		@checkin2 = Checkin.create(habit: @habit2, status: status, date: Time.now)
 		@checkin3 = Checkin.create(habit: @habit1, status: "green", date: Time.now - 1.days)
 		@checkin4 = Checkin.create(habit: @habit1, status: "yellow", date: Time.now - 2.days)
@@ -77,9 +82,3 @@ private
 	end
 
 end
-
-
-   # t.integer  "habit_id"
-   #  t.string   "status"
-   #  t.string   "date"
-   #  t.string   "description"

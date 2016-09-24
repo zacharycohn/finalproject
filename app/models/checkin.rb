@@ -3,12 +3,7 @@ class Checkin < ActiveRecord::Base
 	#why don't these work?
 #	attr_accessor :startDay, :endDay, :checkinDay
 
-	# @startDay = 6
-	# @endDay = 0
-	# @checkinDay = 0
-
 	@checkinDate = Time.now
-
 
 	def self.checkinDate
 		@checkinDate
@@ -17,37 +12,6 @@ class Checkin < ActiveRecord::Base
 	def self.checkinDate=(str)
 		@checkinDate = str
 	end
-
-	###much of the stuff below here will be deletable###
-	# def self.startDay
-	# 	@startDay
-	# end
-
-	# def self.startDay=(str)
-	# 	@startDay = str
-	# end
-
-	# def self.endDay
-	# 	@endDay
-	# end
-
-	# def self.endDay=(str)
-	# 	@endDay = str
-	# end
-
-	# def self.checkinDay
-	# 	@checkinDay
-	# end
-
-	# def self.checkinDay=(str)
-	# 	@checkinDay = str
-	# end
-
-	# def self.jumpToToday=(str)
-	# 	@checkinDate = str
-	# end
-
-	#########
 
 #covered by tests
 	def self.getByDate(str)

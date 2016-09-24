@@ -1,3 +1,7 @@
+Things to work with Clint on: 
+-Controller tests? 
+
+
 TODOs:
 
 -Fitbit integration for steps and sleep
@@ -12,7 +16,6 @@ TODOs:
 
 
 Refactor:
-Move if/then code out of view.
 more mobile friendly
 
 
