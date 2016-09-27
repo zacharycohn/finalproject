@@ -1,7 +1,7 @@
 Things to work with Clint on: 
--Controller tests? 
+-Controller & helper tests? 
 -CSS on today and week view
-
+-Build out individual habit view
 
 TODOs:
 

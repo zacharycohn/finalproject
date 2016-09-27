@@ -1,14 +1,12 @@
 require 'test_helper'
-	include CheckinsHelper
+include CheckinsHelper
 
 class CheckinsHelperTest < ActiveSupport::TestCase
 
 	test "#buildCheckinLabel" do
 		create_old_checkins("red")
 
-#		last_id = @habit1.checkin_ID(Time.now.strftime("%Y-%m-%d"))
-		#realLink = buildLink("red", @habit1.id, last_id, Time.now.strftime("%Y-%m-%d"), "PATCH")
-		realLink = buildCheckinLabel(@habit1, "red", (Time.now.strftime("%Y-%m-%d")))
+		realLink = buildCheckinLabel(@habit1, "red", (Time.now.strftime("%Y-%m-%d"))) #this breaks when it gets to habit_checkins_path... why?
 		testLink = "<h3><div class=\"label label-danger\"><a rel=\"nofollow\" data-method=\"PATCH\" href=\"/habits/1/checkins/1?date=2016-09-24&amp;status=red\">Red</a></span></h3>"
 
 		assert_equal testLink, realLink
