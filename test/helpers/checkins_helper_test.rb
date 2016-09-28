@@ -1,15 +1,19 @@
 require 'test_helper'
 include CheckinsHelper
 
-class CheckinsHelperTest < ActiveSupport::TestCase
+class CheckinsHelperTest < ActionView::TestCase #< ActiveSupport::TestCase
 
 	test "#buildCheckinLabel" do
 		create_old_checkins("red")
 
-		realLink = buildCheckinLabel(@habit1, "red", (Time.now.strftime("%Y-%m-%d"))) #this breaks when it gets to habit_checkins_path... why?
-		testLink = "<h3><div class=\"label label-danger\"><a rel=\"nofollow\" data-method=\"PATCH\" href=\"/habits/1/checkins/1?date=2016-09-24&amp;status=red\">Red</a></span></h3>"
+		realPatchLink = buildCheckinLabel(@habit1, "red", (Time.new("2016", "09", "26").strftime("%Y-%m-%d")))
+		testPatchLink = "<h3><div class=\"label label-danger\"><a rel=\"nofollow\" data-method=\"PATCH\" href=\"/habits/1/checkins/1?date=2016-09-26&amp;status=red\">Red</a></span></h3>"
 
-		assert_equal testLink, realLink
+		realPostLink = buildCheckinLabel(@habit1, "red", (Time.new("2016", "09", "27").strftime("%Y-%m-%d")))
+		testPostLink = "<h3><div class=\"label label-danger\"><a rel=\"nofollow\" data-method=\"POST\" href=\"/habits/1/checkins?date=2016-09-27&amp;status=red\">Red</a></span></h3>"
+
+		assert_equal testPatchLink, realPatchLink
+		assert_equal testPostLink, realPostLink
 	end
 
 private
@@ -18,7 +22,7 @@ private
 
 		@habit1 = Habit.create(name: "Put pants on", user: @user)
 
-		@checkin1 = Checkin.create(habit: @habit1, status: status, date: Time.now.strftime("%Y-%m-%d"))
+		@checkin1 = Checkin.create(habit: @habit1, status: status, date: Time.new("2016", "09", "26").strftime("%Y-%m-%d"))
 	end
 
 end

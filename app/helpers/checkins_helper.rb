@@ -35,6 +35,7 @@ module CheckinsHelper
 		return color
 	end
 
+#covered by tests
 	def buildCheckinLabel(habit, color, checkinDate)
 		if habit.post_or_patch?(checkinDate)
 			last_id = habit.checkin_ID(checkinDate)
