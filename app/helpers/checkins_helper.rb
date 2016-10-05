@@ -38,7 +38,7 @@ module CheckinsHelper
 #covered by tests
 	def buildCheckinLabel(habit, color, checkinDate)
 		if habit.post_or_patch?(checkinDate)
-			last_id = habit.checkin_ID(checkinDate)
+			last_id = habit.checkin_ID(checkinDate) #change last_id to a not-shitty name.
 			link = buildLink(color, habit.id, last_id, checkinDate, "PATCH")
 		else
 			link = buildLink(color, habit.id, nil, checkinDate, "POST")

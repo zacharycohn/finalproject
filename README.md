@@ -1,9 +1,12 @@
 Things to work with Clint on: 
--Controller & helper tests? 
+-Controller & view tests?
 -CSS on today and week view
 -Build out individual habit view
+-test coverage
 
 TODOs:
+
+-remove a ton of the controller redirects with a single path that takes a parameter.
 
 -Fitbit integration for steps and sleep
 
@@ -17,7 +20,10 @@ TODOs:
 
 
 Refactor:
-more mobile friendly
+-more mobile friendly
+-stop passing new date when patching.
+
+
 
 
 Bugs:
