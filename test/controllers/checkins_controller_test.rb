@@ -6,17 +6,23 @@ class CheckinsControllerTest < ActionController::TestCase
   test "create a Checkin" do
   	sign_in(users(:ralph))
 
+  	checkinTime = Time.now
   	assert_difference 'Checkin.count', 1 do
-	    post :create, habit_id: habits(:pants).id, date: Time.now, status: "green"
+	    post :create, habit_id: habits(:pants).id, date: checkinTime, status: "green"
 		end
+
+		assert_redirected_to "/habits/today"
 
 		@checkin = Checkin.last
 		assert_equal "green", @checkin.status
+		assert_equal "#{checkinTime}", @checkin.date
+		assert_equal "green", flash[:notice]
+
 	end
 
 
 
-	test "update a Checkin" do 
+	test "update a Checkin" do
 		sign_in(users(:ralph))
 		
 		checkin_date = (Time.now - 5.days).strftime("%Y-%m-%d")

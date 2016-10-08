@@ -27,6 +27,11 @@ class HabitsController < ApplicationController
 		@habits = current_user.habits.where(active: "true") #Habit.all.active
 	end
 
+	def stats
+#		@stats = params[:stats]
+		@stats = current_user.habits.find(params[:habit_id])
+	end
+
 
 	private
 		def habit_params

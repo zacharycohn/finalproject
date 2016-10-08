@@ -7,15 +7,10 @@ Things to work with Clint on:
 TODOs:
 
 -remove a ton of the controller redirects with a single path that takes a parameter.
-
 -Fitbit integration for steps and sleep
-
 -Create individual habit details view
-
 -export data
-
 - Green/red percentage per habit
-
 -time zone selector
 
 
