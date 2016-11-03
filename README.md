@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/zacharycohn/finalproject.svg?branch=master)](https://travis-ci.org/zacharycohn/finalproject)
+
 Things to work with Clint on: 
 -Controller & view tests?
 -CSS on today and week view
