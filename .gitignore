@@ -25,3 +25,6 @@
 
 # Ignore local cached gems
 .gem
+
+# Ignore Test Coverage
+coverage
