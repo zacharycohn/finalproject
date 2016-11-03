@@ -27,7 +27,13 @@ Bugs:
 current project:
 
 
-
+Stats:
+Green
+Yellow
+Red
+Longest Green Streak
+Start Date
+Percentage green
 
 
 starter habits:
