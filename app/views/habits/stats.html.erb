@@ -1,1 +1,19 @@
-<%= @stats.name	 %>
+<h1>
+	<%= "Checkins for " + @stats.name.to_s + ": " + @stats.checkins.count.to_s	%>
+	<p>
+</h1>
+
+<h2>Overall Stats: </h2>
+<%= "Green checkins: " + @stats.getNumStatus("green").count.to_s %>
+<br>
+<%= "Yellow checkins: " + @stats.getNumStatus("yellow").count.to_s %>
+<br>
+<%= "Red checkins: " + @stats.getNumStatus("red").count.to_s %>
+<p>
+<%= "Percent Success: " + (100 * @stats.getNumStatus("green").count / (@stats.getNumStatus("green").count + @stats.getNumStatus("yellow").count + @stats.getNumStatus("red").count)).to_s + "%" %>
+
+<h2>Day Breakdown</h2>
+<% @stats.checkins.each do |c| %>
+	<%= displayDays(c) %>
+	<br>
+<% end %>

@@ -28,7 +28,6 @@ class HabitsController < ApplicationController
 	end
 
 	def stats
-#		@stats = params[:stats]
 		@stats = current_user.habits.find(params[:habit_id])
 	end
 
