@@ -32,10 +32,10 @@
 				</thead>
 				<tbody>
 					<% @habits.each do |h| %>
-					ID: <%= h.name %> <%= link_to "Stats Page", stats_habits_path(habit_id: h.id) %>
-					<p>
 						<tr>
-							<td><h3><div class="<%= h.checkins.get_checkin_status(checkinDate.strftime("%Y-%m-%d")) %>"><%= h.name %></span></h3></td>
+							<td><h3>
+								<div class="<%= h.checkins.get_checkin_status(checkinDate.strftime("%Y-%m-%d")) %>"><%= link_to h.name, stats_habits_path(habit_id: h.id) %></span>
+								</h3></td>
 							<td><%= buildCheckinLabel(h, "green", checkinDate.strftime("%Y-%m-%d")) %></td>
 							<td><%= buildCheckinLabel(h, "yellow", checkinDate.strftime("%Y-%m-%d")) %></td>
 							<td><%= buildCheckinLabel(h, "red", checkinDate.strftime("%Y-%m-%d")) %></td>
