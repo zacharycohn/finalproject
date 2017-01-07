@@ -19,34 +19,32 @@
 
 	<h1>Your habits for: <%= checkinDate.strftime("%a, %B %d") %> </h1>
 
-
-		<table class="table table-striped">
-			<thead>
-				<tr>
-						<h2><th>Habit</th></h2>
-						<th>Green</th>
-						<th>Yellow</th>
-						<th>Red</th>
-				</tr>
-			</thead>
-			<tbody>
-				<% @habits.each do |h| %>
-				<p>
+	<div class"row">
+		<div class="col-xs-12">
+			<table class="table table-striped">
+				<thead>
 					<tr>
-						<td>
-							<h3>
-								<div class="<%= h.checkins.get_checkin_status(checkinDate.strftime("%Y-%m-%d")) %>">
-									<%= link_to h.name, stats_habits_path(habit_id: h.id) %>
-								</span>
-							</h3>
-						</td>
-						<td><%= buildCheckinLabel(h, "green", checkinDate) %></td>
-						<td><%= buildCheckinLabel(h, "yellow", checkinDate) %></td>
-						<td><%= buildCheckinLabel(h, "red", checkinDate) %></td>
+							<h2><th>Habit</th></h2>
+							<th>Green</th>
+							<th>Yellow</th>
+							<th>Red</th>
 					</tr>
-				<% end %>
-			</tbody>
-		</table>
+				</thead>
+				<tbody>
+					<% @habits.each do |h| %>
+					ID: <%= h.name %> <%= link_to "Stats Page", stats_habits_path(habit_id: h.id) %>
+					<p>
+						<tr>
+							<td><h3><div class="<%= h.checkins.get_checkin_status(checkinDate.strftime("%Y-%m-%d")) %>"><%= h.name %></span></h3></td>
+							<td><%= buildCheckinLabel(h, "green", checkinDate.strftime("%Y-%m-%d")) %></td>
+							<td><%= buildCheckinLabel(h, "yellow", checkinDate.strftime("%Y-%m-%d")) %></td>
+							<td><%= buildCheckinLabel(h, "red", checkinDate.strftime("%Y-%m-%d")) %></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
 
-		<h3><p><%= link_to "Add a new habit", new_habit_path %></p></h3>
+	<h3><p><%= link_to "Add a new habit", new_habit_path %></p></h3>
 </div> 

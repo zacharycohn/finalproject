@@ -1,19 +1,30 @@
-<h1>
-	<%= "Checkins for " + @stats.name.to_s + ": " + @stats.checkins.count.to_s	%>
-	<p>
-</h1>
+<div class="col-md-12">
+	<h1>Stats for <%= @stats.name %></h1>
 
-<h2>Overall Stats: </h2>
-<%= "Green checkins: " + @stats.getNumStatus("green").count.to_s %>
-<br>
-<%= "Yellow checkins: " + @stats.getNumStatus("yellow").count.to_s %>
-<br>
-<%= "Red checkins: " + @stats.getNumStatus("red").count.to_s %>
-<p>
-<%= "Percent Success: " + (100 * @stats.getNumStatus("green").count / (@stats.getNumStatus("green").count + @stats.getNumStatus("yellow").count + @stats.getNumStatus("red").count)).to_s + "%" %>
+	<div class="row">
+		<div class="col-xs-3">Green</div>
+		<div class="col-xs-3"><%= @stats.count_color("green") %></div>
+	</div>
+	<div class="row">
+		<div class="col-xs-3">Yellow</div>
+		<div class="col-xs-3"><%= @stats.count_color("yellow") %></div>
+	</div>
+	<div class="row">
+		<div class="col-xs-3">Red</div>
+		<div class="col-xs-3"><%= @stats.count_color("red") %></div>
+	</div>
+	<div class="row">
+		<div class="col-xs-3">Longest Streak</div>
+		<div class="col-xs-3">Data</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-3">Start Date</div>
+		<div class="col-xs-3">Data</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-3">Success Rate</div>
+		<div class="col-xs-3">Data</div>
+	</div>
 
-<h2>Day Breakdown</h2>
-<% @stats.checkins.each do |c| %>
-	<%= displayDays(c) %>
-	<br>
-<% end %>
+	</div>
+</div>

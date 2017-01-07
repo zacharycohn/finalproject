@@ -7,6 +7,11 @@ class Habit < ActiveRecord::Base
 		where active: "true"
 	end
 
+	def count_color(color)
+		greens = self.checkins.where("status LIKE :term", term: "%#{color}%")
+		return greens.size
+	end
+
 #covered by tests
 	def checkin_ID(checkinDate)
 		return self.checkins.where("date LIKE :term", term: "%#{checkinDate}%").last.id
