@@ -36,9 +36,9 @@
 					<p>
 						<tr>
 							<td><h3><div class="<%= h.checkins.get_checkin_status(checkinDate.strftime("%Y-%m-%d")) %>"><%= h.name %></span></h3></td>
-							<td><%= buildCheckinLabel(h, "green", checkinDate) %></td>
-							<td><%= buildCheckinLabel(h, "yellow", checkinDate) %></td>
-							<td><%= buildCheckinLabel(h, "red", checkinDate) %></td>
+							<td><%= buildCheckinLabel(h, "green", checkinDate.strftime("%Y-%m-%d")) %></td>
+							<td><%= buildCheckinLabel(h, "yellow", checkinDate.strftime("%Y-%m-%d")) %></td>
+							<td><%= buildCheckinLabel(h, "red", checkinDate.strftime("%Y-%m-%d")) %></td>
 						</tr>
 					<% end %>
 				</tbody>

@@ -24,11 +24,12 @@ class HabitTest < ActiveSupport::TestCase
   	assert_equal false, test3
 	end
 
+	#wtf were we doing here?
 	test "#checkin_ID" do
 		create_old_checkins
 		last_id = @habit1.checkin_ID(Time.now)
 
-		assert_equal 2, last_id
+		assert_equal 1, last_id
 	end
 
 private
@@ -42,8 +43,10 @@ private
 
 		#	habit_id: habits(:pants).id, date: checkin_date, status: "red", id: habits(:pants).checkins.last.id
 # =>													 status: habit_id: id: date:), method:
-		byebug
-		@checkin1 = Checkin.update(habit_id: @habit1.id, status: "yellow", date: Time.now, id: @habit1.checkins.last.id, updateMethod: "PATCH") #i think this is creating a new checkin, not updating
+
+#real bug here
+
+		@checkin1.update(habit_id: @habit1.id, status: "yellow", date: Time.now, id: @habit1.checkins.last.id) #i think this is creating a new checkin, not updating
 		@checkin3 = Checkin.create(habit: @habit1, status: "green", date: Time.now - 1.days)
 
 		@checkin11 = Checkin.create(habit: @habit1, status: "yellow", date: Time.now - 2.days)	
