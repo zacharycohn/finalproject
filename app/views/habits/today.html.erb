@@ -4,15 +4,15 @@
 <div class="col-md-12">
 
 	<div class="row">
-		<div class="col-xs-4">
+		<div class="col-xs-3">
 			<h4><%= link_to "Previous Day", previousDay_checkins_path, class: 'btn btn-large btn-default' %></h4>
 		</div>
 
-		<div class="col-xs-4">
+		<div class="col-xs-3">
 			<h4><%= link_to "Jump to Today", jumpToToday_checkins_path, class: 'btn btn-large btn-default' %></h4>
 		</div>
 
-		<div class="col-xs-4">
+		<div class="col-xs-3">
 			<h4><%= link_to "Next Day", nextDay_checkins_path, class: 'btn btn-large btn-default' %></h4>
 		</div>
 	</div>
@@ -20,7 +20,7 @@
 	<h1>Your habits for: <%= checkinDate.strftime("%a, %B %d") %> </h1>
 
 	<div class"row">
-		<div class="col-xs-12">
+		<div class="col-xs-8">
 			<table class="table table-striped">
 				<thead>
 					<tr>
@@ -43,8 +43,51 @@
 					<% end %>
 				</tbody>
 			</table>
+			<h3><p><%= link_to "Add a new habit", new_habit_path %></p></h3>
+		</div>
+		<div class="col-xs-4">
+			<table class="table table-striped">
+				<thead>
+					<h2><th>Monthly Focus</th></h2>
+				</thead>
+				<tbody>
+					<tr>
+						<td><h3>This is your first monthly focus for the month of January.</h3></td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<table class="table table-striped">
+				<thead>
+					<h2><th>Mid-term Goals</th></h2>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<h4>These are your mid-term goals for Jan-Mar.</h4>
+							<h4>Here's another long term goal.</h4>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table class="table table-striped">
+				<thead>
+					<h2><th>Long-term Goals</th></h2>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<h4>These are your long-term goals for Mar-July.</h4>
+							<h4>Here's a second long term goal for you.</h4>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<h3><p><%= link_to "Manage your goals", new_goal_path %></p></h3>
+
+
 		</div>
 	</div>
 
-	<h3><p><%= link_to "Add a new habit", new_habit_path %></p></h3>
 </div> 

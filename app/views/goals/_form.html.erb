@@ -1,0 +1,25 @@
+<% if flash[:error] %>
+	<div>
+		<%= flash[:error] %>
+	</div>
+<% end %>
+
+<%= form_for @goal, method: "POST" do |g| %>
+	<div>
+		<%= g.label "What is your goal?" %>
+		<%= g.text_field :description %> 
+	</div>
+	<div>
+		<%= g.label "What type of goal is it?" %>
+		<br> 
+		<%= g.radio_button :type, "monthly" %>
+		<%= g.label "Monthly Focus?" %>
+		<br>
+		<%= g.radio_button :type, "midterm" %>
+		<%= g.label "Mid-term Goal?" %>
+		<br>
+		<%= g.radio_button :type, "longterm" %>
+		<%= g.label "Long-term Goal?" %>
+	</div>
+	<%= g.submit %>
+<% end %>

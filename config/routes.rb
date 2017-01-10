@@ -22,9 +22,11 @@ Rails.application.routes.draw do
     end
 
     resources :checkins
-
   end
 
+  resources :goals, only: [:index, :new, :create, :update, :destroy]
+
+ 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
