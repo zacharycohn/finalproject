@@ -12,13 +12,13 @@
 	<div>
 		<%= g.label "What type of goal is it?" %>
 		<br> 
-		<%= g.radio_button :type, "monthly" %>
+		<%= g.radio_button :goal_type, "monthly" %>
 		<%= g.label "Monthly Focus?" %>
 		<br>
-		<%= g.radio_button :type, "midterm" %>
+		<%= g.radio_button :goal_type, "midterm" %>
 		<%= g.label "Mid-term Goal?" %>
 		<br>
-		<%= g.radio_button :type, "longterm" %>
+		<%= g.radio_button :goal_type, "longterm" %>
 		<%= g.label "Long-term Goal?" %>
 	</div>
 	<%= g.submit %>

@@ -2,24 +2,15 @@ class Goal < ActiveRecord::Base
 	belongs_to :user
 
 	def self.getMonthly
-		monthlyFocus = self.where("type LIKE monthly")
+		self.where("goal_type = 'monthly'")
 	end
 
 	def self.getMidTerm
-		midTerm = self.where("type LIKE midterm")
+		self.where("goal_type = 'midterm'")
 	end
 
 	def self.getLongTerm
-		longTerm = self.where("type LIKE longterm")
+		self.where("goal_type = 'longterm'")
 	end
-
-	def getType
-		return self.type
-	end
-
-	def getStatus
-		return @status
-	end
-
 
 end

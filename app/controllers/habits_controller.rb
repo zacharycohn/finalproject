@@ -8,8 +8,8 @@ class HabitsController < ApplicationController
 		@habits = current_user.habits.where(active: "true") #Habit.all.active #current_user.habits.where(...)
 	end
 
-	def new
-		@habit = current_user.habits.build #Habit.new #current_user.habits.build
+	def new	
+		@habit = Habit.new #current_user.habits.build #Habit.new #current_user.habits.build
 	end
 
 	def create

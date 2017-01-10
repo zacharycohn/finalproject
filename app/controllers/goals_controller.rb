@@ -7,15 +7,14 @@ class GoalsController < ApplicationController
 #		@habit = current_user.habits.build #Habit.new #current_user.habits.build
 
 	def new 
-#		@goal = current_user.goal.build
-		@goal = Goal.new
+		@goal = Goal.new #current_user.goals.build
 	end
 
 	def create
-		@goal = current_user.Goal.build(goal_params)
+		@goal = current_user.goals.build(goal_params)
 
 		if @goal.save
-			redirect_to habit_goals
+			redirect_to new_goal_path
 		else
 			flash.now[:error] = goal.errors.messages.first.join(' ')
 		end
@@ -23,7 +22,7 @@ class GoalsController < ApplicationController
 
 	private
 	def goal_params
-		params.require(:user).permit(:type, :description, :position) 
+		params.require(:goal).permit(:type, :description, :position) 
 	end
 
 end
