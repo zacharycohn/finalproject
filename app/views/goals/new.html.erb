@@ -3,18 +3,20 @@
 <%= render 'form' %>
 
 <h1>Manage existing goals</h1>
+
 <h2>Monthly Focus</h2> 
-Display it here
-<p>
+	<% Goal.get_monthly.each do |f| %>
+		<%= f.description %>
+	<% end %>
 <h2>Mid-term Goals</h2>
-<ul>
-	<li>display</li>
-	<li>them</li>
-	<li>here</li>
-</ul>
+	<ul>
+		<% Goal.get_midterm.each do |m| %>
+			<li> <%= m.description %> </li>
+		<% end %>
+	</ul>
 <h2>Long-term Goals</h2>
-<ul>
-	<li>display</li>
-	<li>them</li>
-	<li>here</li>
-</ul>
+	<ul>
+		<% Goal.get_longterm.each do |l| %>
+			<li> <%= l.description %> </li>
+		<% end %>
+	</ul>

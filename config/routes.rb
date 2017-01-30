@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     resources :checkins
   end
 
-  resources :goals, only: [:index, :new, :create, :update, :destroy]
+  resources :goals
 
  
   # The priority is based upon order of creation: first created -> highest priority.

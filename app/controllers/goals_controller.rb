@@ -1,13 +1,14 @@
 class GoalsController < ApplicationController
-	
+			
 	def index
-
+#		@goals = current_user.goals #add this back in
 	end 
 
-#		@habit = current_user.habits.build #Habit.new #current_user.habits.build
+#		@habit = current_user.habits.build #Habit.new
 
 	def new 
 		@goal = Goal.new #current_user.goals.build
+
 	end
 
 	def create
@@ -22,7 +23,7 @@ class GoalsController < ApplicationController
 
 	private
 	def goal_params
-		params.require(:goal).permit(:type, :description, :position) 
+		params.require(:goal).permit(:goal_type, :description, :position) 
 	end
 
 end
