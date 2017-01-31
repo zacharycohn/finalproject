@@ -52,7 +52,11 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td><h3>This is your first monthly focus for the month of January.</h3></td>
+						<td><h3>
+							<!-- <#%= render 'goals/display' %> -->
+							<h4>Here is your monthly focus for the month of Feb.</h4>
+							<!-- try to use @goals.get_monthly here first. Not gonna work. -->
+						</h3></td>
 					</tr>
 				</tbody>
 			</table>
@@ -84,7 +88,7 @@
 					</tr>
 				</tbody>
 			</table>
-			<h3><p><%= link_to "Manage your goals", new_goal_path %></p></h3>
+			<h3><p><%= link_to "Manage your goals", goals_path %></p></h3>
 
 
 		</div>

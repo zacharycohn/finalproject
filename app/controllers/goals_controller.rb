@@ -1,7 +1,7 @@
 class GoalsController < ApplicationController
 			
 	def index
-#		@goals = current_user.goals #add this back in
+		@goals = current_user.goals #add this back in
 	end 
 
 #		@habit = current_user.habits.build #Habit.new
