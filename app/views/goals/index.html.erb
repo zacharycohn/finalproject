@@ -1,25 +1,5 @@
-<h1><%= link_to "Add a new goal", new_goal_path %></h1>
-
-
 <h1>Manage existing goals</h1>
 
-<!-- <#%= render 'display' %> -->
+<%= render 'display' %>
 
-
-<h2>Monthly Focus</h2> 
-	<% @goals.get_monthly.each do |f| %>
-		<%= f.description %>
-	<% end %>
-<h2>Mid-term Goals</h2>
-	<ul>
-		<% @goals.get_midterm.each do |m| %>
-			<li> <%= m.description %> </li>
-		<% end %>
-	</ul>
-<h2>Long-term Goals</h2>
-	<ul>
-		<% @goals.get_longterm.each do |l| %>
-			<li> <%= l.description %> </li>
-		<% end %>
-	</ul>
-
+<%= button_to "Add a new goal", new_goal_path, method: :get %>

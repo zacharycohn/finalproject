@@ -1,17 +1,16 @@
-
 <h2>Monthly Focus</h2> 
-	<% @goals.get_monthly.each do |f| %>
+	<% current_user.goals.get_monthly.each do |f| %>
 		<%= f.description %>
 	<% end %>
 <h2>Mid-term Goals</h2>
 	<ul>
-		<% @goals.get_midterm.each do |m| %>
+		<% current_user.goals.get_midterm.each do |m| %>
 			<li> <%= m.description %> </li>
 		<% end %>
 	</ul>
 <h2>Long-term Goals</h2>
 	<ul>
-		<% @goals.get_longterm.each do |l| %>
+		<% current_user.goals.get_longterm.each do |l| %>
 			<li> <%= l.description %> </li>
 		<% end %>
 	</ul>

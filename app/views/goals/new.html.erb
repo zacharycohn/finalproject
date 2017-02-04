@@ -7,8 +7,10 @@
 <%= form_for @goal, method: "POST" do |g| %>
 	<div>
 		<%= g.label "What is your goal?" %>
-		<%= g.text_field :description %> 
+		<br>
+		<%= g.text_area :description, size: "50x5" %> 
 	</div>
+	<p>
 	<div>
 		<%= g.label "What type of goal is it?" %>
 		<br> 
@@ -21,5 +23,12 @@
 		<%= g.radio_button :goal_type, "longterm" %>
 		<%= g.label "Long-term Goal?" %>
 	</div>
+	<div class="button">
+  	<%= link_to "Cancel", goals_path %>
+	</div>
+	<%#= button_tag "Cancel", goals_path %>
 	<%= g.submit %>
+	
 <% end %>
+
+

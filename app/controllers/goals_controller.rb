@@ -1,7 +1,7 @@
 class GoalsController < ApplicationController
-			
+
 	def index
-		@goals = current_user.goals #add this back in
+#		@goals = current_user.goals #add this back in
 	end 
 
 #		@habit = current_user.habits.build #Habit.new
@@ -15,7 +15,7 @@ class GoalsController < ApplicationController
 		@goal = current_user.goals.build(goal_params)
 
 		if @goal.save
-			redirect_to new_goal_path
+			redirect_to goals_path
 		else
 			flash.now[:error] = goal.errors.messages.first.join(' ')
 		end

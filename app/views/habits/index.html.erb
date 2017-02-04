@@ -1,0 +1,104 @@
+<%# checkinDate = Checkin.checkinDate %>
+<%= flashNotice(flash[:notice]) %>
+
+<h1><%= @checkinDate %></h1>
+
+<div class="col-md-12">
+
+	<div class="row">
+		<div class="col-xs-3">
+			<%= link_to habits_path, :year => @yesterday.year, :month => @yesterday.month, :day => @yesterday.day %>
+			<h4><%#= link_to "Previous Day", previousDay_checkins_path, class: 'btn btn-large btn-default' %></h4>
+		</div>
+
+		<div class="col-xs-3">
+			<%= link_to habits_path, :year => @today.year, :month => @today.month, :day => @today.day %>
+
+			<h4><%#= link_to "Jump to Today", jumpToToday_checkins_path, class: 'btn btn-large btn-default' %></h4>
+		</div>
+
+		<div class="col-xs-3">
+			<%= link_to habits_path, :year => @tomorrow.year, :month => @tomorrow.month, :day => @tomorrow.day %>
+
+			<h4><%#= link_to "Next Day", nextDay_checkins_path, class: 'btn btn-large btn-default' %></h4>
+		</div>
+	</div>
+
+	<h1>INDEX:Your habits for: <%= @checkinDate.strftime("%a, %B %d") %> </h1>
+
+	<div class"row">
+		<div class="col-xs-8">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+							<h2><th>Habit</th></h2>
+							<th>Green</th>
+							<th>Yellow</th>
+							<th>Red</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @habits.each do |h| %>
+						<tr>
+							<td><h3>
+								<div class="<%= h.checkins.get_checkin_status(@checkinDate.strftime("%Y-%m-%d")) %>"><%= link_to h.name, stats_habits_path(habit_id: h.id) %></span>
+								</h3></td>
+							<td><%= buildCheckinLabel(h, "green", @checkinDate.strftime("%Y-%m-%d")) %></td>
+							<td><%= buildCheckinLabel(h, "yellow", @checkinDate.strftime("%Y-%m-%d")) %></td>
+							<td><%= buildCheckinLabel(h, "red", @checkinDate.strftime("%Y-%m-%d")) %></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+			<h3><p><%= link_to "Add a new habit", new_habit_path %></p></h3>
+		</div>
+		<div class="col-xs-4">
+			<table class="table table-striped">
+				<thead>
+					<h2><th>Monthly Focus</th></h2>
+				</thead>
+				<tbody>
+					<tr>
+						<td><h3>
+						  <%= render 'goals/display' %>
+							<h4>Here is your monthly focus for the month of Feb.</h4>
+							<!-- try to use @goals.get_monthly here first. Not gonna work. -->
+						</h3></td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<table class="table table-striped">
+				<thead>
+					<h2><th>Mid-term Goals</th></h2>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<h4>These are your mid-term goals for Jan-Mar.</h4>
+							<h4>Here's another long term goal.</h4>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table class="table table-striped">
+				<thead>
+					<h2><th>Long-term Goals</th></h2>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<h4>These are your long-term goals for Mar-July.</h4>
+							<h4>Here's a second long term goal for you.</h4>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<h3><p><%= link_to "Manage your goals", goals_path %></p></h3>
+
+
+		</div>
+	</div>
+
+</div> 

@@ -1,15 +1,18 @@
 Rails.application.routes.draw do
   devise_for :users
-  root 'habits#today'
+  root 'habits#index'
+
+  get "habits/(:year/:month/:day)" => "habits#index", 
+      :constraints => { :year => /\d{4}/, :month => /\d{1,2}/, :day => /\d{1,2}/ }
 
   resources :checkins, only: [] do      
     collection do
         get 'previousWeek'
         get 'jumpToThisWeek'
         get 'nextWeek'
-        get 'jumpToToday'
-        get 'previousDay'
-        get 'nextDay'
+        # get 'jumpToToday'
+        # get 'previousDay'
+        # get 'nextDay'
       end
     end
 

@@ -26,7 +26,9 @@ class CheckinsController < ApplicationController
 
 		if @checkin.save
 			flash[:notice] = @checkin.status
-			redirect_to today_habits_path
+			#			redirect_to habits_path
+
+			redirect_to habits_path #, :year => @checkinDate.year, :month => @checkinDate.month, :day => @checkinDate.day
 		else
 			flash.now[:error] = habit.errors.messages.first.join(' ')
 		end
@@ -42,25 +44,32 @@ class CheckinsController < ApplicationController
 
 		if @checkin.update(status: checkin_params)
 			flash[:notice] = @checkin.status
-			redirect_to today_habits_path
+			#			redirect_to habits_path
+
+			redirect_to habits_path #, :year => @checkin.date.year, :month => @checkinDate.month, :day => @checkinDate.day
 		else
 			flash.now[:error] = habit.errors.messages.first.join(' ')
 		end
 	end
 
-	def nextDay
-		if Checkin.checkinDate.strftime("%Y-%m-%d") < Time.now.strftime("%Y-%m-%d")
-			Checkin.checkinDate += 1.days
-		end
+#move to habit controller
+	# def nextDay
+	# 	if Checkin.checkinDate.strftime("%Y-%m-%d") < Time.now.strftime("%Y-%m-%d")
+	# 		Checkin.checkinDate += 1.days
+	# 	end
 
-		redirect_to today_habits_path
-	end
+	# 	redirect_to today_habits_path
+	# end
 
-	def previousDay
-		Checkin.checkinDate -= 1.days
+#move to habit controller
+# 	def previousDay
+# #		Checkin.checkinDate -= 1.days
+# #		redirect_to today_habits_path
 
-		redirect_to today_habits_path
-	end
+# 		yesterday = DateTime.new(params[:year].to_i, params[:month].to_i, params[:day].to_i) - 1.day
+
+# 		redirect_to get habits/index, :year => yesterday.year, :month => yesterday.month, :day => yesterday.day
+# 	end
 
 	def jumpToToday
 		Checkin.checkinDate = Time.now
