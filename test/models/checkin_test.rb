@@ -5,21 +5,21 @@ class CheckinTest < ActiveSupport::TestCase
 	test "#get_checkin_status success" do
 		create_old_checkins("green")
 
-		status = Checkin.get_checkin_status(Time.now)
+		status = Checkin.get_checkin_status(Date.current)
 		assert_equal "label label-success", status
 	end
 
 	test "#get_checkin_status warning" do
 		create_old_checkins("yellow")
 
-		status = Checkin.get_checkin_status(Time.now)
+		status = Checkin.get_checkin_status(Date.current)
 		assert_equal "label label-warning", status
 	end
 
 	test "#get_checkin_status danger" do
 		create_old_checkins("red")
 
-		status = Checkin.get_checkin_status(Time.now)
+		status = Checkin.get_checkin_status(Date.current)
 		assert_equal "label label-danger", status
 	end
 
@@ -28,7 +28,7 @@ class CheckinTest < ActiveSupport::TestCase
 
 		weekOfData = Array.new
 		weekOfTestData = Array.new
-		weekOfRealData = @habit1.checkins.get_week
+		weekOfRealData = @habit1.checkins.get_week(Date.current)
 		weekOfTestData = [@checkin1, @checkin3, @checkin4, @checkin5, @checkin6, @checkin7, @checkin8]
 
 		assert_equal weekOfTestData, weekOfRealData 
@@ -38,7 +38,7 @@ class CheckinTest < ActiveSupport::TestCase
 	test "#getByDate" do
 		create_dupe_checkins
 
-		assert_equal @checkin11, @habit3.checkins.getByDate(Time.now - 4.days)
+		assert_equal @checkin11, @habit3.checkins.getByDate(Date.current - 4.days)
 
 	end
 
@@ -60,15 +60,15 @@ private
 		@habit1 = Habit.create(name: "Put pants on", user: @user)
 		@habit2 = Habit.create(name: "Put shirt on", user: @user)
 
-		@checkin1 = Checkin.create(habit: @habit1, status: status, date: Time.now.strftime("%Y-%m-%d"))
-		@checkin2 = Checkin.create(habit: @habit2, status: status, date: Time.now)
-		@checkin3 = Checkin.create(habit: @habit1, status: "green", date: Time.now - 1.days)
-		@checkin4 = Checkin.create(habit: @habit1, status: "yellow", date: Time.now - 2.days)
-		@checkin5 = Checkin.create(habit: @habit1, status: "red", date: Time.now - 3.days)
-		@checkin6 = Checkin.create(habit: @habit1, status: "green", date: Time.now - 4.days)
-		@checkin7 = Checkin.create(habit: @habit1, status: "yellow", date: Time.now - 5.days)
-		@checkin8 = Checkin.create(habit: @habit1, status: "red", date: Time.now - 6.days)
-		@checkin9 = Checkin.create(habit: @habit1, status: "green", date: Time.now - 7.days)
+		@checkin1 = Checkin.create(habit: @habit1, status: status, date: Date.current.strftime("%Y-%m-%d"))
+		@checkin2 = Checkin.create(habit: @habit2, status: status, date: Date.current)
+		@checkin3 = Checkin.create(habit: @habit1, status: "green", date: Date.current - 1.days)
+		@checkin4 = Checkin.create(habit: @habit1, status: "yellow", date: Date.current - 2.days)
+		@checkin5 = Checkin.create(habit: @habit1, status: "red", date: Date.current - 3.days)
+		@checkin6 = Checkin.create(habit: @habit1, status: "green", date: Date.current - 4.days)
+		@checkin7 = Checkin.create(habit: @habit1, status: "yellow", date: Date.current - 5.days)
+		@checkin8 = Checkin.create(habit: @habit1, status: "red", date: Date.current - 6.days)
+		@checkin9 = Checkin.create(habit: @habit1, status: "green", date: Date.current - 7.days)
 	end
 
 	def create_dupe_checkins
@@ -76,8 +76,8 @@ private
 
 		@habit3 = Habit.create(name: "Pants", user: @user2)
 
-		@checkin10 = Checkin.create(habit: @habit3, status: "green", date: Time.now - 4.days)
-		@checkin11 = Checkin.create(habit: @habit3, status: "red", date: Time.now - 4.days)
+		@checkin10 = Checkin.create(habit: @habit3, status: "green", date: Date.current - 4.days)
+		@checkin11 = Checkin.create(habit: @habit3, status: "red", date: Date.current - 4.days)
 
 	end
 

@@ -1,17 +1,22 @@
 <%# time = Time.new.localtime %>
-<% time = Checkin.checkinDate %>
+<% time = @checkinWeek #Checkin.checkinDate %>
+
 <div class="col-md-12">
 	<div class="row">
 		<div class="col-xs-4">
-			<h4><%= link_to 'Previous Week', previousWeek_checkins_path, class: 'btn btn-large btn-default' %></h4>
+			<h4><%= link_to week_habits_path, :year => (time - 7.days).year, :month => (time - 7.days).month, :day => (time - 7.days).day %>
+
+				<%#= link_to 'Previous Week', previousWeek_checkins_path, class: 'btn btn-large btn-default' %></h4>
 		</div>
 
 		<div class="col-xs-4">
-			<h4><%= link_to "Current Week", jumpToThisWeek_checkins_path, class: 'btn btn-large btn-default' %></h4>
+			<h4><%= link_to week_habits_path, :year => Date.current.year, :month => Date.current.month, :day => Date.current.day %>
+				<%#= link_to "Current Week", jumpToThisWeek_checkins_path, class: 'btn btn-large btn-default' %></h4>
 		</div>
 		
 		<div class="col-xs-4">
-			<h4><%= link_to 'Next Week', nextWeek_checkins_path, class: 'btn btn-large btn-default' %></h4>
+			<h4><%= link_to week_habits_path, :year => (time + 7.days).year, :month => (time + 7.days).month, :day => (time + 7.days).day %>
+				<%#= link_to 'Next Week', nextWeek_checkins_path, class: 'btn btn-large btn-default' %></h4>
 		</div>
 	</div>
 
@@ -32,7 +37,7 @@
 				<tr>
 					<!-- ToDo: if active -->
 					<td><h2><div class="label label-default"><%= h.name %></span></h2></td>
-					<% h.checkins.get_week.each do | checkinBlock | %>
+					<% h.checkins.get_week(@checkinWeek).each do | checkinBlock | %>
 						<td bgcolor="<%= colorPicker(checkinBlock) %>"></td>
 					<% end %>
 				</tr>

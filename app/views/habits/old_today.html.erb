@@ -1,25 +1,19 @@
-<%# checkinDate = Checkin.checkinDate %>
+<%# checkinDate = @checkinDate %>
 <%= flashNotice(flash[:notice]) %>
 
 <div class="col-md-12">
 
 	<div class="row">
 		<div class="col-xs-3">
-			<%#= link_to habits_path, :year => @yesterday.year, :month => @yesterday.month, :day => @yesterday.day %>
-			<h4><%= link_to habits_path, :year => @checkinDate.yesterday.year, :month => @checkinDate.yesterday.month, :day => @checkinDate.yesterday.day %>
-			<%#= link_to "Previous Day", previousDay_checkins_path, class: 'btn btn-large btn-default' %></h4>
+			<h4><%= link_to "Previous Day", previousDay_checkins_path, class: 'btn btn-large btn-default' %></h4>
 		</div>
 
 		<div class="col-xs-3">
-			<h4><%= link_to habits_path, :year => Date.current.year, :month => Date.current.month, :day => Date.current.day %>
-
-			<%#= link_to "Jump to Today", jumpToToday_checkins_path, class: 'btn btn-large btn-default' %></h4>
+			<h4><%= link_to "Jump to Today", jumpToToday_checkins_path, class: 'btn btn-large btn-default' %></h4>
 		</div>
 
 		<div class="col-xs-3">
-			<h4><%= link_to habits_path, :year => @checkinDate.tomorrow.year, :month => @checkinDate.tomorrow.month, :day => @checkinDate.tomorrow.day %>
-
-			<%#= link_to "Next Day", nextDay_checkins_path, class: 'btn btn-large btn-default' %></h4>
+			<h4><%= link_to "Next Day", nextDay_checkins_path, class: 'btn btn-large btn-default' %></h4>
 		</div>
 	</div>
 
@@ -40,11 +34,11 @@
 					<% @habits.each do |h| %>
 						<tr>
 							<td><h3>
-								<div class="<%= h.checkins.get_checkin_status(@checkinDate.strftime("%Y-%m-%d")) %>"><%= link_to h.name, stats_habits_path(habit_id: h.id) %></span>
+								<div class="<%= h.checkins.get_checkin_status(checkinDate.strftime("%Y-%m-%d")) %>"><%= link_to h.name, stats_habits_path(habit_id: h.id) %></span>
 								</h3></td>
-							<td><%= buildCheckinLabel(h, "green", @checkinDate.strftime("%Y-%m-%d")) %></td>
-							<td><%= buildCheckinLabel(h, "yellow", @checkinDate.strftime("%Y-%m-%d")) %></td>
-							<td><%= buildCheckinLabel(h, "red", @checkinDate.strftime("%Y-%m-%d")) %></td>
+							<td><%= buildCheckinLabel(h, "green", checkinDate.strftime("%Y-%m-%d")) %></td>
+							<td><%= buildCheckinLabel(h, "yellow", checkinDate.strftime("%Y-%m-%d")) %></td>
+							<td><%= buildCheckinLabel(h, "red", checkinDate.strftime("%Y-%m-%d")) %></td>
 						</tr>
 					<% end %>
 				</tbody>

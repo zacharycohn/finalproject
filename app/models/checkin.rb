@@ -3,7 +3,7 @@ class Checkin < ActiveRecord::Base
 	#why don't these work?
 #	attr_accessor :startDay, :endDay, :checkinDay
 
-	@checkinDate = Time.now
+	@checkinDate = Date.current.to_formatted_s(:db)
 
 	def self.checkinDate
 		@checkinDate
@@ -16,17 +16,18 @@ class Checkin < ActiveRecord::Base
 #covered by tests
 	def self.getByDate(str)
 		checkinByDate = Array.new
-
+		
 		checkinByDate = self.where("date LIKE :term", term: "%#{str}%").last
+		return checkinByDate
 	end
 
 #covered by tests
-	def self.get_week
+	def self.get_week(checkinWeek)
 		weekOfData = Array.new
  		x = 0
 
  		0.upto(6) do |d|
- 			targetDate = (@checkinDate - d.days).strftime("%Y-%m-%d")
+ 			targetDate = (checkinWeek - d.days).strftime("%Y-%m-%d")
  			weekOfData[x] = self.where("date LIKE :term", term: "%#{targetDate}%").last
  			x += 1
  		end

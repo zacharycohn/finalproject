@@ -37,7 +37,7 @@ class CheckinsController < ApplicationController
 
 	def update
 		find_habit
-		
+
 		@checkin = @habit.checkins.find(params[:id])
 		@checkin.date = params[:date]
 		@checkin.description = "updated"
@@ -71,31 +71,33 @@ class CheckinsController < ApplicationController
 # 		redirect_to get habits/index, :year => yesterday.year, :month => yesterday.month, :day => yesterday.day
 # 	end
 
-	def jumpToToday
-		Checkin.checkinDate = Time.now
+	# def jumpToToday
+	# 	Checkin.checkinDate = Time.now
 
-		redirect_to today_habits_path
-	end
+	# 	redirect_to today_habits_path
+	# end
 
-	def previousWeek
-		Checkin.checkinDate -= 7.days
 
-		redirect_to week_habits_path
-	end
+###########
+	# def previousWeek
+	# 	Checkin.checkinDate -= 7.days
 
-	def jumpToThisWeek
-		Checkin.checkinDate = Time.now
+	# 	redirect_to week_habits_path
+	# end
+
+	# def jumpToThisWeek
+	# 	Checkin.checkinDate = Time.now
 		
-		redirect_to week_habits_path
-	end
+	# 	redirect_to week_habits_path
+	# end
 
-	def nextWeek
-		if Checkin.checkinDate.strftime("%Y-%m-%d") < Time.now.strftime("%Y-%m-%d")
-			Checkin.checkinDate += 7.days
-		end
+	# def nextWeek
+	# 	if Checkin.checkinDate.strftime("%Y-%m-%d") < Time.now.strftime("%Y-%m-%d")
+	# 		Checkin.checkinDate += 7.days
+	# 	end
 		
-		redirect_to week_habits_path
-	end
+	# 	redirect_to week_habits_path
+	# end
 
 private
 	def checkin_params

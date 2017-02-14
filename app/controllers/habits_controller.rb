@@ -3,18 +3,18 @@ class HabitsController < ApplicationController
 	def index
 
 		if params[:year].nil? or params[:month].nil? or params[:day].nil?
-			@checkinDate = 	DateTime.now
+			@checkinDate = 	Date.current
 		else
 			begin
-				@checkinDate = DateTime.new(params[:year].to_i, params[:month].to_i, params[:day].to_i)
+				@checkinDate = Date.new(params[:year].to_i, params[:month].to_i, params[:day].to_i)
 			rescue
 				render :text => "time is broken" and return
 			end
 		end
 
-		@yesterday = @checkinDate - 1.day
-		@tomorrow = @checkinDate + 1.day
-		@today = DateTime.now
+		# @yesterday = @checkinDate - 1.day
+		# @tomorrow = @checkinDate + 1.day
+		#	@today = Date.current
 		@next_week = @checkinDate + 7.days
 		@last_week = @checkinDate - 7.days
 
@@ -44,20 +44,34 @@ class HabitsController < ApplicationController
 
 	def week
 		@habits = current_user.habits.where(active: "true") #Habit.all.active
+		#@checkinWeek = Date.current 
+
+		if params[:year].nil? or params[:month].nil? or params[:day].nil?
+			@checkinWeek = 	Date.current
+		else
+			begin
+				@checkinWeek = Date.new(params[:year].to_i, params[:month].to_i, params[:day].to_i)
+			rescue
+				render :text => "week time is broken" and return
+			end
+		end
+
+
+
 	end
 
 	def stats
 		@stats = current_user.habits.find(params[:habit_id])
 	end
 
-	def previousDay
+#	def previousDay
 #		Checkin.checkinDate -= 1.days
 #		redirect_to today_habits_path
 
-		yesterday = DateTime.new(params[:year].to_i, params[:month].to_i, params[:day].to_i) - 1.day
+#		yesterday = DateTime.new(params[:year].to_i, params[:month].to_i, params[:day].to_i) - 1.day
 
 #		redirect_to get habits/index, :year => yesterday.year, :month => yesterday.month, :day => yesterday.day
-	end
+#	end
 
 
 	private
