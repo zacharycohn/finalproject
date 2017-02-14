@@ -6,7 +6,8 @@
 	<div class="row">
 		<div class="col-xs-3">
 			<%#= link_to habits_path, :year => @yesterday.year, :month => @yesterday.month, :day => @yesterday.day %>
-			<h4><%= link_to habits_path, :year => @checkinDate.yesterday.year, :month => @checkinDate.yesterday.month, :day => @checkinDate.yesterday.day %>
+			<h4><%# link_to "Previous Day", { controller: habits }, :year => @checkinDate.yesterday.year, :month => @checkinDate.yesterday.month, :day => @checkinDate.yesterday.day %>
+				<a href="/habits/<%= @checkinDate.yesterday.year%>/<%=@checkinDate.yesterday.month%>/<%=@checkinDate.yesterday.day%>">Previous Day</a>
 			<%#= link_to "Previous Day", previousDay_checkins_path, class: 'btn btn-large btn-default' %></h4>
 		</div>
 

@@ -34,7 +34,7 @@ gem 'devise'
 # gem 'capistrano-rails', group: :development
 
 group :production do
-	gem 'pg'
+	gem 'pg', '~> 0.19.0'
 	gem 'rails_12factor'
 end
 

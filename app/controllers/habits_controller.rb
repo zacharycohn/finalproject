@@ -36,12 +36,13 @@ class HabitsController < ApplicationController
 		@habit[:active] = "true"
 		
 		if @habit.save
-			redirect_to today_habits_path
+			redirect_to habits_path
 		else
 			flash.now[:error] = habit.errors.messages.first.join(' ')
 		end
 	end
 
+#can reduce this.
 	def week
 		@habits = current_user.habits.where(active: "true") #Habit.all.active
 		#@checkinWeek = Date.current 
