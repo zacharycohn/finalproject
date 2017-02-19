@@ -2,4 +2,6 @@
 
 <%= render 'display' %>
 
-<%= button_to "Add a new goal", new_goal_path, method: :get %>
+<a class="btn btn-primary" href="<%= new_goal_path %>" role="button">Add a new goal</a>
+
+<%#= button_to "Add a new goal", new_goal_path, method: :get %>
