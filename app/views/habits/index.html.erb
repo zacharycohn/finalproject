@@ -12,14 +12,14 @@
 		</div>
 
 		<div class="col-xs-3">
-			<h4><%= link_to habits_path, :year => Date.current.year, :month => Date.current.month, :day => Date.current.day %>
-
+			<h4><%#= link_to habits_path, :year => Date.current.year, :month => Date.current.month, :day => Date.current.day %>
+				<a href="/habits/<%=Date.current.year%>/<%=Date.current.month%>/<%=Date.current.day%>">Today</a>
 			<%#= link_to "Jump to Today", jumpToToday_checkins_path, class: 'btn btn-large btn-default' %></h4>
 		</div>
 
 		<div class="col-xs-3">
-			<h4><%= link_to habits_path, :year => @checkinDate.tomorrow.year, :month => @checkinDate.tomorrow.month, :day => @checkinDate.tomorrow.day %>
-
+			<h4><%#= link_to habits_path, :year => @checkinDate.tomorrow.year, :month => @checkinDate.tomorrow.month, :day => @checkinDate.tomorrow.day %>
+				<a href="/habits/<%= @checkinDate.tomorrow.year%>/<%=@checkinDate.tomorrow.month%>/<%=@checkinDate.tomorrow.day%>">Next Day</a>
 			<%#= link_to "Next Day", nextDay_checkins_path, class: 'btn btn-large btn-default' %></h4>
 		</div>
 	</div>

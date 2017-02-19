@@ -18,17 +18,16 @@
 		<%= g.label "Monthly Focus?", for: "goal_goal_type_monthly" %>
 		<br>
 		<%= g.radio_button :goal_type, "midterm" %>
-		<%= g.label "Mid-term Goal?" %>
+		<%= g.label "Mid-term Goal?", for: "goal_goal_type_midterm" %>
 		<br>
 		<%= g.radio_button :goal_type, "longterm" %>
-		<%= g.label "Long-term Goal?" %>
+		<%= g.label "Long-term Goal?", for: "goal_goal_type_longterm" %>
 	</div>
-	<div class="button">
-  	<%= link_to "Cancel", goals_path %>
-	</div>
-	<%#= button_tag "Cancel", goals_path %>
+	<a class="btn btn-primary" href="<%= goals_path %>" role="button">Cancel</a>
 	<%= g.submit %>
 	
 <% end %>
+
+
 
 

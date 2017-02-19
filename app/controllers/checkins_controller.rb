@@ -22,7 +22,7 @@ class CheckinsController < ApplicationController
 
 		@checkin = @habit.checkins.build(status: checkin_params)
 		@checkin.date = params[:date]
-		byebug
+		#byebug
 		@checkin.description = "new"
 
 		if @checkin.save
@@ -48,7 +48,8 @@ class CheckinsController < ApplicationController
 			flash[:notice] = @checkin.status
 			#			redirect_to habits_path
 
-			redirect_to habits_path #, :year => @checkin.date.year, :month => @checkinDate.month, :day => @checkinDate.day
+			#redirect_to habits_path #, :year => @checkin.date.year, :month => @checkinDate.month, :day => @checkinDate.day
+			redirect_to("/habits/#{@checkin.date.year}/#{@checkin.date.month}/#{@checkin.date.day}")
 		else
 			flash.now[:error] = habit.errors.messages.first.join(' ')
 		end
