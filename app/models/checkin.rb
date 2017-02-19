@@ -1,17 +1,5 @@
 class Checkin < ActiveRecord::Base
 	belongs_to :habit
-	#why don't these work?
-#	attr_accessor :startDay, :endDay, :checkinDay
-
-	#@checkinDate = Date.current #.to_formatted_s(:db)
-
-	# def self.checkinDate
-	# 	@checkinDate
-	# end
-
-	# def self.checkinDate=(str)
-	# 	@checkinDate = str
-	# end
 
 #covered by tests
 	def self.getByDate(str)

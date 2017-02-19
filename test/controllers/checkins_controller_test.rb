@@ -25,7 +25,6 @@ class CheckinsControllerTest < ActionController::TestCase
 	test "update a Checkin" do
 		sign_in(users(:ralph))
 		
-#		checkin_date = (Date.current - 5.days).strftime("%Y-%m-%d")
 		checkin_date = setDate() - 5.days
 		post :create, habit_id: habits(:pants).id, date: checkin_date, status: "green"
 		assert_redirected_to "/habits/2017/2/13"
@@ -44,9 +43,9 @@ class CheckinsControllerTest < ActionController::TestCase
 		assert_equal "red", flash[:notice]
 	end
 
-	private
+private
 	def setDate
-		currentDate = Date.new(2017,02,18) 
+		@currentDate = Date.new(2017,02,18) 
 	end
 end
 
