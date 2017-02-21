@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170211204933) do
+ActiveRecord::Schema.define(version: 20170110211237) do
 
   create_table "checkins", force: :cascade do |t|
     t.integer  "habit_id"
