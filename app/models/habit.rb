@@ -31,6 +31,9 @@ class Habit < ActiveRecord::Base
 	def getNumStatus(color)
 		return self.checkins.where("status LIKE :term", term: "%#{color}%")
 	end
+
+
+
 end
 
 
