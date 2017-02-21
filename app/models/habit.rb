@@ -14,12 +14,15 @@ class Habit < ActiveRecord::Base
 
 #covered by tests
 	def checkin_ID(checkinDate)
-		return self.checkins.where("date LIKE :term", term: "%#{checkinDate}%").last.id
+		#return self.checkins.where("date LIKE :term", term: "%#{checkinDate}%").last.id
+
+		#something like this
+		return self.checkins.where(date: checkinDate).last.id
 	end
 
 #covered by tests
 	def post_or_patch?(checkinDate)
-		if !(self.checkins.empty?) and !(self.checkins.where("date LIKE :term", term: "%#{checkinDate}%").empty?)
+		if !(self.checkins.empty?) and !(self.checkins.where(date: checkinDate).empty?) #!(self.checkins.where("date LIKE :term", term: "%#{checkinDate}%").empty?)
 			#I want to patch
 			return true 
 		else
