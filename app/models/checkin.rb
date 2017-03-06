@@ -4,8 +4,9 @@ class Checkin < ActiveRecord::Base
 #covered by tests
 	def self.getByDate(str)
 		checkinByDate = Array.new
-		
-		checkinByDate = self.where("date LIKE :term", term: "%#{str}%").last
+
+#		checkinByDate = self.where("date LIKE :term", term: "%#{str}%").last
+		checkinByDate = self.where(date: str).last
 		return checkinByDate
 	end
 
@@ -16,7 +17,9 @@ class Checkin < ActiveRecord::Base
 
  		0.upto(6) do |d|
  			targetDate = (checkinWeek - d.days).strftime("%Y-%m-%d")
- 			weekOfData[x] = self.where("date LIKE :term", term: "%#{targetDate}%").last
+# 			weekOfData[x] = self.where("date LIKE :term", term: "%#{targetDate}%").last
+
+ 			weekOfData[x] = self.where(date: targetDate).last
  			x += 1
  		end
  		weekOfData
