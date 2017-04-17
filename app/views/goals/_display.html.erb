@@ -1,16 +1,24 @@
 <h2>Monthly Focus</h2> 
 	<% current_user.goals.get_monthly.each do |f| %>
+		<%= check_box :goal, f.description, hidden: @invisibleStatus %>
 		<%= f.description %>
+
 	<% end %>
 <h2>Mid-term Goals</h2>
 	<ul>
 		<% current_user.goals.get_midterm.each do |m| %>
-			<li> <%= m.description %> </li>
+			<li>		
+				<%= check_box :goal, m.description, hidden: @invisibleStatus %>
+			 	<%= m.description %> 
+			 </li>
 		<% end %>
 	</ul>
 <h2>Long-term Goals</h2>
 	<ul>
 		<% current_user.goals.get_longterm.each do |l| %>
-			<li> <%= l.description %> </li>
+			<li> 		
+				<%= check_box :goal, l.description, hidden: @invisibleStatus %>
+				<%= l.description %> 
+			</li>
 		<% end %>
 	</ul>

@@ -2,12 +2,14 @@ class GoalsController < ApplicationController
 
 	def index
 #		@goals = current_user.goals #add this back in
+		@invisibleStatus = true
 	end 
 
 #		@habit = current_user.habits.build #Habit.new
 
 	def new 
 		@goal = Goal.new #current_user.goals.build
+
 
 	end
 

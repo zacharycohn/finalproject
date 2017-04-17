@@ -13,5 +13,8 @@ class Goal < ActiveRecord::Base
 		self.where("goal_type = 'longterm'")
 	end
 
+	def set_invisibleStatus(status)
+		@vinisibleStatus = status
+	end
 
 end

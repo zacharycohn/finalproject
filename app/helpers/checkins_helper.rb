@@ -3,14 +3,15 @@ module CheckinsHelper
 	def navButtons(currentDate)
 		linkpaths = ["/habits/#{@checkinDate.yesterday.year}/#{@checkinDate.yesterday.month}/#{@checkinDate.yesterday.day}",
 		 "/habits/#{Date.current.year}/#{Date.current.month}/#{Date.current.day}"]
-
-		 #add a new array here for the "Previous day" "Today" "Next Day" bit?
+		 buttonText = ["Previous Day", "Jump to Today"]
 
 		if currentDate != Date.current
 			linkpaths.push("/habits/#{@checkinDate.tomorrow.year}/#{@checkinDate.tomorrow.month}/#{@checkinDate.tomorrow.day}")
+			buttonText.push("Next Day")
 		end
 
-		return linkpaths
+		navButtonBundle = [linkpaths, buttonText]
+		return navButtonBundle
 	end
 
 	def buildLink(color, id, last_id, checkinDate, updateMethod)

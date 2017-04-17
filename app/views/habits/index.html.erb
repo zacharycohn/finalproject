@@ -3,12 +3,16 @@
 <div class="col-md-12">
 	
 	<!-- put in controller, make it @paths -->
-	<% paths = navButtons(@checkinDate) %>
-	
+	<% navButtonBundle = navButtons(@checkinDate) %>
+	<% paths = navButtonBundle[0] %>
+	<% buttonText = navButtonBundle[1] %>
+
 	<div class="row">
+		<% x = 0 %>
 		<% paths.each do |l| %>
 			<div class="col-xs-3">
-				<h4><a class="btn btn-primary" href="<%=l%>" role="button">Previous Day</a></h4>
+				<h4><a class="btn btn-primary" href="<%=l%>" role="button"><%= buttonText[x] %></a></h4>
+				<% x = x + 1 %>
 			</div>
 		<% end %>
 	</div>
